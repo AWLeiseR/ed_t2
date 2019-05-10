@@ -9,5 +9,3 @@ por exemplo : circulo,retangulo,quadra, hidrante, fila, geofile,qryfile,svgfile 
 *Criar os arquivos .c e .h
 
 *Ver o que vai dar pra reutilizar
-
-
