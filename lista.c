@@ -39,7 +39,7 @@ ListaFiguras* createLista(){
     lista->ultimo=-1;
     aux=lista;
     for(i=0;i<tam_lista;i++){
-        aux.info[i].prox=1+i;
+        aux->info[i].prox=1+i;
     }
     aux.info[tam_lista-1].prox=-1;
     return lista;
@@ -51,7 +51,7 @@ int lenght(listaFiguras* list){
     aux=list->primeiro;
     while(1){
         if(aux.prox!=-1){
-            aux=aux.info[aux].prox;
+            aux=aux->info[aux].prox;
             i++;
         }else{
             break;
@@ -60,7 +60,7 @@ int lenght(listaFiguras* list){
     return i;
 }
 
-int insert(listaFiguras list, Info info){
+int insert(listaFiguras* list, Info info){
     Info nItem;
-    list.info[list.livre]=info;
+    list->info[list.livre]=;
 }
