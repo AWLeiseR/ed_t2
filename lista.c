@@ -6,18 +6,41 @@
 #define tam_lista 10000
 
 typedef struct{
-    char tipo;
-    double x,y;
+   
     double h,w;
 }Retangulo;
 
 typedef struct{
-    double i;
-}Info;
-
+   
+    double r;
+}Circulo;
 
 typedef struct{
-    Retangulo *forma;
+    Retangulo retangulo;
+    char cep[10];
+}Quadra;
+
+typedef struct{
+    int id;
+    double x,y;
+}Hidrante;
+
+typedef struct{
+    int id;
+    double x,y;
+}Semaforo;
+
+typedef struct{
+    char tipo;
+    double x,y;
+    union{
+        Retangulo retangulo;
+        Circulo circulo;
+        Quadra quadra;
+    }
+}
+typedef struct{
+    Forma *forma;
     int ant;
     int prox
 }Item;
