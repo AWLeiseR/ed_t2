@@ -75,15 +75,7 @@ int main(int argc, char *argv[]){
     //sufixo do arquivo qry
     char *sufixoqry=NULL;
     char *saidasvg;
-    //struct com os parametros das formas
-    Formas *forma=NULL;
-    //armazena limite de formas no svg
-    int nx=0;
-    
-    FILE *arq3=NULL;
-    
-    FILE *svgsemconsulta=NULL;
-
+   
     char *semcunsulta;
 
     char nomesvg[]=".svg";
@@ -135,22 +127,28 @@ int main(int argc, char *argv[]){
         i++;
     }
     //verifica se o ponteiro dirbase foi preenchido ou nao
-    if(dirbase == NULL){
+    if(dirbase == NULL && nomeqry == NULL){
         //aloca memoria do tamanho de nomegeo +1
          pathgeo = (char *)malloc((strlen(nomegeo)+1)*sizeof(char));
          pathqry = (char *)malloc((strlen(nomeqry)+1)*sizeof(char));
         //sprintf escreve dentro de pathgeo
         sprintf(pathgeo,"%s",nomegeo);
         sprintf(pathqry,"%s",nomeqry);
-    }else{
-        //aloca memoria do tamanho de nomegeo+dirbase
-        pathgeo = (char *)malloc((strlen(nomegeo)+strlen(dirbase)+2)*sizeof(char));
-        pathqry = (char *)malloc((strlen(nomeqry)+strlen(dirbase)+2)*sizeof(char));
-        //sprintf escreve dentro de pathgeo
-        sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
-        sprintf(pathqry,"%s/%s",dirbase,nomeqry);
-    }
-    
+    }else if(nomeqry == NULL){
+
+        }
+        else if(dirbase == NULL){
+
+            }else{
+            //aloca memoria do tamanho de nomegeo+dirbase
+            pathgeo = (char *)malloc((strlen(nomegeo)+strlen(dirbase)+2)*sizeof(char));
+            pathqry = (char *)malloc((strlen(nomeqry)+strlen(dirbase)+2)*sizeof(char));
+            //sprintf escreve dentro de pathgeo
+            sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
+            sprintf(pathqry,"%s/%s",dirbase,nomeqry);
+            }   
+    printf("\n%s  %s",nomegeo,sufixogeo);
+    printf("\n%s  %s",nomeqry,sufixoqry);
     
     
   

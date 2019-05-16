@@ -85,6 +85,11 @@ void leituraGeo(char address[]){
                 criaTexto(x,y,line_buf,arq3);
                 criaTexto(x,y,line_buf,svgsemconsulta);
                 break;
+
+            case 'q':
+                break;
+            case 's':
+                break;
             //default:
                 //break;     
         }
