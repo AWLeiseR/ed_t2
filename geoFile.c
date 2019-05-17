@@ -2,6 +2,7 @@ void leituraGeo(char address[]){
 
     //char que recebe o identificador de tipo
     char letra;
+    char comando[4];
     //string
     char linha[50];
     //inteiro que recebe o identificador das formas
@@ -24,9 +25,9 @@ void leituraGeo(char address[]){
     //printf("\t%s\n",address);
     //loop que varre o arquivo .geo
     while(1){
-        
+        fscanf(arq,"%s",comando)
         //pega a primeira letra do arq .geo de armazena em letra
-        letra=fgetc(arq);
+        letra=comando[0];
 //printf("%c",letra);
         
         //testa se a letra é 'c' 'r' 't' ou 'nx'

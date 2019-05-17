@@ -97,8 +97,8 @@ int lenght(ListaFiguras* list){
 }
    
 
-int insert(ListaFiguras* list, Dado* info){
-    Dado* nItem;
+int insert(ListaFiguras* list, Forma* info){
+    Forma* nItem;
     nItem=info;
     int n;
     int n1;
@@ -145,3 +145,61 @@ void delet(ListaFiguras* list, int p){
     list->info[p].ant=-1;
     list->livre=p;
 }
+
+void setRetangulo(){
+
+}
+
+void setCirculo(){
+
+}
+
+void setQuadra(){
+
+}
+
+void setHidrante(){
+
+}
+
+void setSemafaro(){
+
+}
+
+void setRadio(){
+
+}
+
+Retangulo getRetangulo(){
+
+}
+
+Circulo getCirculo(){
+
+}
+
+Quadra getQuadra(){
+
+}
+
+Hidrante getHidrante(){
+
+}
+
+Semafaro getSemafaro(){
+
+}
+
+Radio getRadio(){
+
+}
+
+double getX(){
+
+    return double;
+}
+double getY(){
+
+    return double;
+}
+

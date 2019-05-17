@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"lista.h"
 
 
 char *trataBarra(char path[]){
@@ -91,6 +92,7 @@ int main(int argc, char *argv[]){
             dirbase= (char *)malloc((strlen(argv[i])+1)*sizeof(char));
             //copia argv para dirbase
             strcpy(dirbase,argv[i]);
+
         //-f:nome do arq.geo
         //verifica se argv é igual a -f
         }else if (strcmp("-f",argv[i])==0){
@@ -102,6 +104,7 @@ int main(int argc, char *argv[]){
             //copia argv para nomegeo
             strcpy(nomegeo,argv[i]);
             sufixogeo=trataBarra(nomegeo);
+
         //-q:nome do arquivo qry
         //verifica se argv é igual a -q
         }else if (strcmp("-q",argv[i])==0){
@@ -113,6 +116,7 @@ int main(int argc, char *argv[]){
             //copia argv para nomeqry
             strcpy(nomeqry,argv[i]);            
             sufixoqry=trataBarra(nomeqry);
+
         //-o:diretorio de saida
         //verifica se argv é igual a -o
         }else if (strcmp("-o",argv[i])==0){
@@ -126,14 +130,16 @@ int main(int argc, char *argv[]){
         //acrescenta mais 1 para pegar o proximo parametro
         i++;
     }
+
+
     //verifica se o ponteiro dirbase foi preenchido ou nao
     if(dirbase == NULL && nomeqry == NULL){
         //aloca memoria do tamanho de nomegeo +1
          pathgeo = (char *)malloc((strlen(nomegeo)+1)*sizeof(char));
-         pathqry = (char *)malloc((strlen(nomeqry)+1)*sizeof(char));
+        //pathqry = (char *)malloc((strlen(nomeqry)+1)*sizeof(char));
         //sprintf escreve dentro de pathgeo
         sprintf(pathgeo,"%s",nomegeo);
-        sprintf(pathqry,"%s",nomeqry);
+        //sprintf(pathqry,"%s",nomeqry);
     }else if(nomeqry == NULL){
 
         }
