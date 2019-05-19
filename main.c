@@ -1,7 +1,8 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include"lista.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "lista.h"
+#include "geoFile.h"
 
 
 char *trataBarra(char path[]){
@@ -141,18 +142,24 @@ int main(int argc, char *argv[]){
         sprintf(pathgeo,"%s",nomegeo);
         //sprintf(pathqry,"%s",nomeqry);
     }else if(nomeqry == NULL){
+        pathgeo = (char *)malloc((strlen(nomegeo)+strlen(dirbase)+2)*sizeof(char));
+        sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
+    }else if(dirbase == NULL){
+        sprintf(pathgeo,"%s",nomegeo);
+        pathgeo = (char *)malloc((strlen(nomegeo)+1)*sizeof(char));
+        pathqry = (char *)malloc((strlen(nomeqry)+strlen(dirbase)+2)*sizeof(char));
+        sprintf(pathqry,"%s/%s",dirbase,nomeqry);
+    }else{
+        //aloca memoria do tamanho de nomegeo+dirbase
+        pathgeo = (char *)malloc((strlen(nomegeo)+strlen(dirbase)+2)*sizeof(char));
+        pathqry = (char *)malloc((strlen(nomeqry)+strlen(dirbase)+2)*sizeof(char));
+        //sprintf escreve dentro de pathgeo
+        sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
+        sprintf(pathqry,"%s/%s",dirbase,nomeqry);
+    }
 
-        }
-        else if(dirbase == NULL){
-
-            }else{
-            //aloca memoria do tamanho de nomegeo+dirbase
-            pathgeo = (char *)malloc((strlen(nomegeo)+strlen(dirbase)+2)*sizeof(char));
-            pathqry = (char *)malloc((strlen(nomeqry)+strlen(dirbase)+2)*sizeof(char));
-            //sprintf escreve dentro de pathgeo
-            sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
-            sprintf(pathqry,"%s/%s",dirbase,nomeqry);
-            }   
+    leituraGeo(pathgeo);
+    
     printf("\n%s  %s",nomegeo,sufixogeo);
     printf("\n%s  %s",nomeqry,sufixoqry);
     

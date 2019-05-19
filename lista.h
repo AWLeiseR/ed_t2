@@ -21,21 +21,21 @@ typedef void Item;
 typedef void ListaFiguras;
 
 //cria lista e retorna o ponteiro p/ inicio da lista
-listaFigutas createLista();
+ListaFiguras createLista();
 
 //inicializa a lista
 void inicializaLista();
 
 //retorna o tamanho da lista
-int lenght(listaFiguras list);
+int lenght(ListaFiguras list);
 
 //insere um elemento na lista e retorna um indicador (ver sobre esse indicador)
-int insert(listaFiguras list, Info info);
+int insert(ListaFiguras list, Item info);
 
 
 
 //remove um elemento da lista 
-void delet(listaFiguras list, Posic p);
+void delet(ListaFiguras list, int p);
 
 #endif
 
