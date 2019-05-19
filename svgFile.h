@@ -8,12 +8,14 @@ void cabecalho(FILE* arq);
 void rodape(FILE* arq);
 
 //imprimi retangulo
-void imprimirRetangulo(FILE* arq);
+void criaRetangulo(FILE* arq);
 
 //imprimi Circulo
-void imprimirCirculo(FILE* arq);
+void criaCirculo(FILE* arq);
 
 //imprimi ponto(circulo de raio 1 ou 0)
-void imprimirPonto(FILE* arq);
+void criaPonto(FILE* arq);
+
+void criaLinha();
 
 #endif

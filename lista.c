@@ -17,7 +17,7 @@ typedef struct{
 
 typedef struct{
     Retangulo retangulo;
-    char cep[10];
+    char cep[11];
 }Quadra;
 
 typedef struct{
@@ -38,6 +38,9 @@ typedef struct{
 typedef struct{
     char tipo;
     double x,y;
+    char stroke[15];
+    char fill[15];
+    double stroke-width;
     union{
         Retangulo retangulo;
         Circulo circulo;
@@ -146,60 +149,40 @@ void delet(ListaFiguras* list, int p){
     list->livre=p;
 }
 
-void setRetangulo(){
+void setRetangulo(int id, double x, double y){
 
 }
 
-void setCirculo(){
+void setCirculo(int id,double x, double y){
 
 }
 
-void setQuadra(){
+void setQuadra(char cep [],Retangulo rec){
 
 }
 
-void setHidrante(){
+void setHidrante( int id,double x, double y){
 
 }
 
-void setSemafaro(){
+void setSemafaro(int id,double x, double y){
 
 }
 
-void setRadio(){
+void setRadio(int id,double x, double y){
 
 }
 
-Retangulo getRetangulo(){
-
-}
-
-Circulo getCirculo(){
-
-}
-
-Quadra getQuadra(){
-
-}
-
-Hidrante getHidrante(){
-
-}
-
-Semafaro getSemafaro(){
-
-}
-
-Radio getRadio(){
+Forma getForma(){
 
 }
 
 double getX(){
 
-    return double;
+    return 0.00;
 }
 double getY(){
 
-    return double;
+    return 0.00;
 }
 

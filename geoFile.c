@@ -9,10 +9,12 @@ void leituraGeo(char address[]){
     char comando[4];
     //string
     char linha[50];
+    char cep[11];
     //inteiro que recebe o identificador das formas
     int id;
+    int numQua,numHid,numSem,numRa;
     int i=1000;
-    double x,y;
+    double x,y,w,h;    
     char *line_buf=NULL;
     size_t line_buf_size = 0;
     ssize_t line_size;
@@ -59,8 +61,9 @@ void leituraGeo(char address[]){
                 
 
             }else if(strcmp("nx",comando)){// 'nx'
+                
                 //pega o numero do nx  
-                //fscanf(arq,"%d",nx);
+                fscanf(arq,"%d %d %d %d %d",i,numQua,numHid,numSem,numRa);
                 //i recebe o conteudo de nx
                 //i=*nx;
                 //printf("\t%d\n",i);
@@ -76,15 +79,19 @@ void leituraGeo(char address[]){
                 criaTexto(x,y,line_buf,arq3);
                 criaTexto(x,y,line_buf,svgsemconsulta);*/
             }else if(strcmp("q",comando)==0){
+                fscanf(arq,"%s %lf %lf %lf %lf",cep,x,y,w,h);
                 printf("\nquadra\n");
 
             }else if(strcmp("h",comando)==0){
+                fscanf(arq,"%d %lf %lf",id,x,y);
                 printf("\nHidrante\n");
                 
             }else if(strcmp("s",comando)==0){
+                fscanf(arq,"%d %lf %lf",id,x,y);
                 printf("\nSemafaro\n");
 
             }else if(strcmp("rb",comando)==0){
+                fscanf(arq,"%d %lf %lf",id,x,y);
                 printf("\nRadio-Base\n");
 
             }else if(strcmp("cq",comando)==0){

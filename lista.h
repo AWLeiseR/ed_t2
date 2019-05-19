@@ -37,6 +37,33 @@ int insert(ListaFiguras list, Item info);
 //remove um elemento da lista 
 void delet(ListaFiguras list, int p);
 
+//define um retangulo
+void setRetangulo(int id, double x, double y);
+
+//define um circulo
+void setCirculo(int id,double x, double y);
+
+//define um quadra
+void setQuadra(char cep [],Retangulo rec);
+
+//define um hidrante
+void setHidrante( int id,double x, double y);
+
+//define um semafaro
+void setSemafaro(int id,double x, double y);
+
+//define uma radio-base
+void setRadio(int id,double x, double y);
+
+//retorna uma forma
+Forma getForma();
+
+//retorna a coordenada x de algum ponto
+double getX();
+
+//retorna a coordenada y de algum ponto
+double getY();
+
 #endif
 
 

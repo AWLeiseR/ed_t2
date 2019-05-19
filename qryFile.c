@@ -1,4 +1,8 @@
-void leituraQry(char pathqry[], char pathsaida[],Formas forma[],int nx,char sufixogeo[],char sufixoqry[]){
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry[]){
     //arquivo qry
     FILE *arq;
     //arquivo txt
@@ -45,8 +49,6 @@ void leituraQry(char pathqry[], char pathsaida[],Formas forma[],int nx,char sufi
 
     //testa se esta null
     if(arq==NULL){
-        criaSvg(forma,arq3,nx);
-        fprintf(arq3,"</svg>");
         printf("\nNAO ENCONTRADO ARQUIVO %s\n",pathqry);
         perror("");
         exit(1);
@@ -191,6 +193,16 @@ void leituraQry(char pathqry[], char pathsaida[],Formas forma[],int nx,char sufi
             criaTexto(mx,my,string,arq3);
             //escreve no arquivo txt o enunciado e a resposta na linha seguinte
             fprintf(arq2,"%s %d %d \n%lf\n",letra,j,k,dis);
+        }else if(strcmp("dq",letra)==0){
+
+        }else if(strcmp("del",letra)==0){
+            
+        }else if(strcmp("cdq",letra)==0){
+            
+        }else if(strcmp("crd?",letra)==0){
+            
+        }else if(strcmp("trns",letra)==0){
+            
         }
         //pega a proxima letra (requisição)                
        fscanf(arq,"%s",letra);
