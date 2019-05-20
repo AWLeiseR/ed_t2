@@ -6,47 +6,13 @@
 #define tam_lista 10000
 
 typedef struct{
-   
-    double h,w;
-}Retangulo;
-
-typedef struct{
-   
-    double r;
-}Circulo;
-
-typedef struct{
-    Retangulo retangulo;
-    char cep[11];
-}Quadra;
-
-typedef struct{
-    int id;
-    double x,y;
-}Hidrante;
-
-typedef struct{
-    int id;
-    double x,y;
-}Semafaro;
-
-typedef struct{
-    int id;
-    double x,y;
-}Radio;
-
-typedef struct{
     char tipo;
-    double x,y;
-    char stroke[15];
-    char fill[15];
-    double stroke-width;
     union{
         Retangulo retangulo;
         Circulo circulo;
         Quadra quadra;
         Hidrante hidrantes;
-        Semafaro semafaro;
+        Semaforo semaforo;
         Radio radio;
     }
 }Forma;
@@ -149,8 +115,8 @@ void delet(ListaFiguras* list, int p){
     list->livre=p;
 }
 
-void setRetangulo(int id, double x, double y){
-
+void setRetangulo(Item forma,Retangulo rec){
+    forma.retangulo=rec;;
 }
 
 void setCirculo(int id,double x, double y){

@@ -2,23 +2,11 @@
 #ifndef _LISTA_H
 #define _LISTA_H
 
-typedef void Retangulo;
+typedef void* Forma;
 
-typedef void Circulo;
+typedef void* Item;
 
-typedef void Hidrante;
-
-typedef void Quadra;
-
-typedef void Radio;
-
-typedef void Semafaro;
-
-typedef void Forma;
-
-typedef void Item;
-
-typedef void ListaFiguras;
+typedef void* ListaFiguras;
 
 //cria lista e retorna o ponteiro p/ inicio da lista
 ListaFiguras createLista();
