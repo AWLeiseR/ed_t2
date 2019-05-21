@@ -26,7 +26,7 @@ int insert(ListaFiguras list, Item info);
 void delet(ListaFiguras list, int p);
 
 //define um retangulo
-void setRetangulo(int id, double x, double y);
+void setRetangulo(ListaFiguras list, Retangulo rec);
 
 //define um circulo
 void setCirculo(int id,double x, double y);

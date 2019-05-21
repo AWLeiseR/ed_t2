@@ -116,6 +116,7 @@ void delet(ListaFiguras* list, int p){
 }
 
 void setRetangulo(Item forma,Retangulo rec){
+    forma.tipo="r"
     forma.retangulo=rec;;
 }
 
