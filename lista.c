@@ -2,6 +2,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"circulo.h"
+#include"retangulo.h"
+#include"quadra.h"
+#include"semaforo.h"
+#include"hidrante.h"
+#include"radioBase.h"
  
 #define tam_lista 10000
 
@@ -14,13 +20,13 @@ typedef struct{
         Hidrante hidrantes;
         Semaforo semaforo;
         Radio radio;
-    }
+    };
 }Forma;
 
 typedef struct{
     Forma *forma;
     int ant;
-    int prox
+    int prox;
 }Item;
 
 typedef struct{
@@ -115,16 +121,16 @@ void delet(ListaFiguras* list, int p){
     list->livre=p;
 }
 
-void setRetangulo(Item forma,Retangulo rec){
-    forma.tipo="r"
-    forma.retangulo=rec;;
+void setRetangulo(Item item,Retangulo rec){
+    item.forma->tipo="r";
+    item.forma->retangulo=rec;;
 }
 
 void setCirculo(int id,double x, double y){
 
 }
 
-void setQuadra(char cep [],Retangulo rec){
+void setQuadra(char cep [],Quadra quadra){
 
 }
 

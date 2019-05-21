@@ -32,7 +32,7 @@ void setRetangulo(ListaFiguras list, Retangulo rec);
 void setCirculo(int id,double x, double y);
 
 //define um quadra
-void setQuadra(char cep [],Retangulo rec);
+void setQuadra(char cep [],Quadra quadra);
 
 //define um hidrante
 void setHidrante( int id,double x, double y);

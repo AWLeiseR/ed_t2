@@ -6,7 +6,7 @@ typedef struct{
     double h;
 }Quadra;
 
-void setQuadra(char pCep[],double pX, double pY, double pW, double pH){
+void defineQuadra(char pCep[],double pX, double pY, double pW, double pH){
     Quadra quadra;
     strcpy(quadra.cep,pCep);
     quadra.x=pX;

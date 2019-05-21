@@ -1,4 +1,5 @@
-
+#ifndef _RETANGULO_H
+#define _RETANGULO_H
 //declaração de retangulo
 typedef void* Retangulo;
 
@@ -9,3 +10,4 @@ void defineRetangulo(int i, double pX, double pY,char pStroke[],char pFill[],dou
 int pontoInteriorRetangulo(double px, double py, double cx1, double cy1, double cx2, double cy2);
 
 void deslocaRetangulo(double dx, double dy);
+#endif

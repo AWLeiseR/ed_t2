@@ -1,3 +1,6 @@
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
 
 typedef struct{
     int id;
@@ -11,7 +14,7 @@ typedef struct{
 void defineRetangulo(int i, double pX, double pY,char pStroke[],char pFill[],double pStroke_width,double pH, double pW){
     Retangulo rec;
     rec.id=i;
-    rec.x=px;
+    rec.x=pX;
     rec.y=pY;
     strcpy(rec.stroke,pStroke);
     strcpy(rec.fill,pFill);
@@ -28,6 +31,7 @@ int pontoInteriorRetangulo(double px, double py, double cx1, double cy1, double 
 } 
 
 void deslocaRetangulo(double dx, double dy){
+    double cx,cy;
     cx=cx+dx;
     cy=cy+dy;
 }

@@ -1,3 +1,7 @@
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+
 typedef struct{
     int id;
     double x,y;
@@ -24,6 +28,7 @@ int pontoInternoCirculo(double px, double py, double cx, double cy, double r){
 }
 
 void deslocaCirculo(double dx, double dy){
+  double cx,cy;
     cx=cx+dx;
     cy=cy+dy;
 }
