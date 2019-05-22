@@ -3,7 +3,7 @@ typedef struct{
     double x,y;
 }Radio;
 
-void defineRadio(int i, double pX,double Py){
+void defineRadio(int i, double pX,double pY){
     Radio radio;
     radio.id=i;
     radio.x=pX;

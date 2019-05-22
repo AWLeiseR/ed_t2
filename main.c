@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lista.h"
-#include "geoFile.h"
+
+
 
 
 char *trataBarra(char path[]){
-
     int i,j,x,y,barra;
     char letra;
     char *sufixo;
@@ -59,7 +59,7 @@ char *trataBarra(char path[]){
 
 int main(int argc, char *argv[]){
     //comeca com um pq o argc[0] e o nome do arquivo chamado
-    int i=1;
+   /* int i=1;
     //nome do arquivo .geo
     char *nomegeo=NULL;
     //diretorio de base
@@ -83,7 +83,7 @@ int main(int argc, char *argv[]){
     char nomesvg[]=".svg";
 
     //varre os parametros digitados no terminal
-    while(i<argc){
+   while(i<argc){
         //-e:dir base(opcional)
         //verifica se argv é igual a -e
         if (strcmp("-e",argv[i])==0){
@@ -161,17 +161,22 @@ int main(int argc, char *argv[]){
     leituraGeo(pathgeo);
     
     printf("\n%s  %s",nomegeo,sufixogeo);
-    printf("\n%s  %s",nomeqry,sufixoqry);
-    
+    printf("\n%s  %s",nomeqry,sufixoqry);*/
+    ListaFiguras* list;
+    list=createLista();
+    Retangulo rec;
+    Item item;
+    defineRetangulo(rec,1,20,10,"green","blue",4,20,20);
+    setRetangulo(item,rec);
     
   
 
-    free(nomegeo);
-    free(nomeqry);
-    free(dirbase);
-    free(dirsaida);
-    free(pathgeo);
-    free(pathqry);
+    //free(nomegeo);
+    //free(nomeqry);
+    //free(dirbase);
+    //free(dirsaida);
+    //free(pathgeo);
+    //free(pathqry);
 
     return 0;
 }

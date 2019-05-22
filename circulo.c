@@ -21,11 +21,11 @@ void defineCirculo(int i,double pX,double pY, double pR,char pStroke[], char pFi
     strcpy(circulo.stroke,pStroke);
 }
 
-int pontoInternoCirculo(double px, double py, double cx, double cy, double r){
+/*int pontoInternoCirculo(double px, double py, double cx, double cy, double r){
     double d = distancia (px,py,cx,cy);
     int res = d <= r? 1:0;
     return res;
-}
+}*/
 
 void deslocaCirculo(double dx, double dy){
   double cx,cy;

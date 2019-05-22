@@ -1,6 +1,15 @@
 
 #ifndef _LISTA_H
 #define _LISTA_H
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include"circulo.h"
+#include"retangulo.h"
+#include"quadra.h"
+#include"semaforo.h"
+#include"hidrante.h"
+#include"radioBase.h"
 
 typedef void* Forma;
 
@@ -9,7 +18,7 @@ typedef void* Item;
 typedef void* ListaFiguras;
 
 //cria lista e retorna o ponteiro p/ inicio da lista
-ListaFiguras createLista();
+ListaFiguras* createLista();
 
 //inicializa a lista
 void inicializaLista();

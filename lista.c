@@ -121,9 +121,11 @@ void delet(ListaFiguras* list, int p){
     list->livre=p;
 }
 
-void setRetangulo(Item item,Retangulo rec){
-    item.forma->tipo="r";
-    item.forma->retangulo=rec;;
+Item setRetangulo(Retangulo rec){
+    Item item;
+    item.forma->tipo='r';
+    item.forma->retangulo=rec;
+    return item;
 }
 
 void setCirculo(int id,double x, double y){

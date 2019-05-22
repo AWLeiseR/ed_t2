@@ -1,3 +1,7 @@
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+
 typedef struct{
     char cep[20];
     double x;

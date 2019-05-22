@@ -7,18 +7,17 @@ typedef struct{
     double x,y;
     char stroke[15];
     char fill[15];
-    double stroke_width;
+    double strokeWidth;
     double h,w;
 }Retangulo;
 
-void defineRetangulo(int i, double pX, double pY,char pStroke[],char pFill[],double pStroke_width,double pH, double pW){
-    Retangulo rec;
+void defineRetangulo(Retangulo rec, int i, double pX, double pY, char pStroke[], char pFill[], double pStrokeWidth, double pH, double pW){
     rec.id=i;
     rec.x=pX;
     rec.y=pY;
     strcpy(rec.stroke,pStroke);
     strcpy(rec.fill,pFill);
-    rec.stroke_width=pStroke_width;
+    rec.strokeWidth=pStrokeWidth;
     rec.h=pH;
     rec.w=pW;
 }
