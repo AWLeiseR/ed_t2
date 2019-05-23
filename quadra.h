@@ -9,6 +9,6 @@ void defineQuadra(Quadra *quadra,char pCep[],double pX, double pY, double pW, do
 //muda a cor do stroke e retorna um ponteiro para o cep
 char* mudarCor(Quadra *quadra, char cstrk[]);
 //desloca a quadra e retorna um ponteiro para cep
-char* deslocaQuadra(Quadra *quadra, double dx, double dy)
+char* deslocaQuadra(Quadra *quadra, double dx, double dy);
 
 #endif

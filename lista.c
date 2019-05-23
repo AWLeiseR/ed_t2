@@ -127,7 +127,7 @@ int buscaCep(ListaFiguras* list, char cep[]){
     int tam;
     tam=lenght(list);
     for(i=0;i<tam;i++){
-        strcmp(cep,list->info[i].forma->quadra.cep);
+        //strcmp(cep,list->info[i].forma->quadra);
         if(i){
             break;
         }
@@ -138,14 +138,18 @@ int buscaCep(ListaFiguras* list, char cep[]){
 
 
 Item* setRetangulo(Retangulo *rec){
-    Item item;
-    item.forma->tipo='r';
-    item.forma->retangulo=rec;
+    Item *item;
+    item=malloc(sizeof(Item));
+    item->forma->tipo='r';
+    item->forma->retangulo=rec;
     return item;
 }
 
-void setCirculo(int id,double x, double y){
-
+Item* setCirculo(Circulo *cir){
+    Item *item=malloc(sizeof(Item));
+    item->forma->tipo='c';
+    item->forma->circulo=cir;
+    return item;
 }
 
 void setQuadra(char cep [],Quadra quadra){

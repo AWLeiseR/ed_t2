@@ -35,10 +35,10 @@ int insert(ListaFiguras *list, Item info);
 void delet(ListaFiguras *list, int p);
 
 //define um retangulo
-void setRetangulo(ListaFiguras *list, Retangulo rec);
+Item* setRetangulo( Retangulo rec);
 
 //define um circulo
-void setCirculo(int id,double x, double y);
+Item* setCirculo(Circulo *cir);
 
 //define um quadra
 void setQuadra(char cep [],Quadra quadra);

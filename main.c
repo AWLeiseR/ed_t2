@@ -166,13 +166,16 @@ int main(int argc, char *argv[]){
     list=createLista();
     Circulo *cir;
     cir=criaCirculo();
-    Item item;
+    Item *item;
     char fill[15]="green";
     char stroke[15]="blue";
     defineCirculo(cir,1,20,10,10,"blue","green",4.0);
-    //setRetangulo(item,rec);
+    
+    item=setCirculo(cir);
   
     free(list);
+    free(cir);
+    free(item);
     //free(nomegeo);
     //free(nomeqry);
     //free(dirbase);
