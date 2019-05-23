@@ -4,21 +4,26 @@
 
 typedef struct{
     int id;
-    double x,y;
+    double x;
+    double y;
     double r;
     char stroke[15];
     char fill[15];
     double stroke_width;
     
 }Circulo;
+Circulo* criaCirculo(){
+    Circulo *cir=malloc(sizeof(Circulo));
+    return cir;
 
-void defineCirculo(int i,double pX,double pY, double pR,char pStroke[], char pFill[],double pStroke_width){
-    Circulo circulo;
-    circulo.id=i;
-    circulo.x=pX;
-    circulo.y=pY;
-    circulo.r=pR;
-    strcpy(circulo.stroke,pStroke);
+}
+void defineCirculo(Circulo *circulo,int i,double pX,double pY, double pR,char pStroke[], char pFill[],double pStroke_width){
+    
+    circulo->id=i;
+    circulo->x=pX;
+    circulo->y=pY;
+    circulo->r=pR;
+   strcpy(circulo->stroke,pStroke);
 }
 
 /*int pontoInternoCirculo(double px, double py, double cx, double cy, double r){

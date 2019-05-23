@@ -17,8 +17,11 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
     char string[20];
     //string com o caminho para arq2
     char *saida;
-    //caminho para 
-    //char *saidabb;
+    //string para cep, metricas
+    char comando[3];
+    
+    char id[10];
+    char cstrk[20];
     //ponteiro para pegar o sufixo de bb
     char *sufixo;
     //ponteiro para pegar cor usada em bb
@@ -43,6 +46,9 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
     double mx;
     //double que recebe ponto medio entre dois pontos
     double my;
+    double r;
+    double dx;
+    double dy;
     
     //abre o arq qry só pra leitura
     arq=fopen(pathqry,"r");
@@ -194,14 +200,19 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
             //escreve no arquivo txt o enunciado e a resposta na linha seguinte
             fprintf(arq2,"%s %d %d \n%lf\n",letra,j,k,dis);
         }else if(strcmp("dq",letra)==0){
+            fscanf(arq,"%s %s %lf",comando, id,dis);
 
         }else if(strcmp("del",letra)==0){
+            scanf(arq,"%s",comando);
             
         }else if(strcmp("cdq",letra)==0){
+            scanf(arq,"%lf %lf %lf %s",x,y,r,cstrk);
             
         }else if(strcmp("crd?",letra)==0){
+            scanf(arq,"%s",comando);
             
         }else if(strcmp("trns",letra)==0){
+            scanf(arq,"%lf %lf %lf %lf %lf %lf",x,y,w,h,dx,dy);
             
         }
         //pega a proxima letra (requisição)                

@@ -121,6 +121,22 @@ void delet(ListaFiguras* list, int p){
     list->livre=p;
 }
 
+//arrumar
+int buscaCep(ListaFiguras* list, char cep[]){
+    int i;
+    int tam;
+    tam=lenght(list);
+    for(i=0;i<tam;i++){
+        strcmp(cep,list->info[i].forma->quadra.cep);
+        if(i){
+            break;
+        }
+    }
+    return i;
+}
+
+
+
 Item setRetangulo(Retangulo rec){
     Item item;
     item.forma->tipo='r';

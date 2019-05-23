@@ -164,13 +164,15 @@ int main(int argc, char *argv[]){
     printf("\n%s  %s",nomeqry,sufixoqry);*/
     ListaFiguras* list;
     list=createLista();
-    Retangulo rec;
+    Circulo *cir;
+    cir=criaCirculo();
     Item item;
-    defineRetangulo(rec,1,20,10,"green","blue",4,20,20);
-    setRetangulo(item,rec);
-    
+    char fill[15]="green";
+    char stroke[15]="blue";
+    defineCirculo(cir,1,20,10,10,"blue","green",4.0);
+    //setRetangulo(item,rec);
   
-
+    free(list);
     //free(nomegeo);
     //free(nomeqry);
     //free(dirbase);

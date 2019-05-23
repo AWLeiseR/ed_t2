@@ -16,6 +16,12 @@ void criaCirculo(FILE* arq);
 //imprimi ponto(circulo de raio 1 ou 0)
 void criaPonto(FILE* arq);
 
-void criaLinha();
+void criaLinha(double x1,double y1,double x2, double y2, FILE *arq);
+
+void criaRetangulodash(double x, double y, double w, double h, char stroke[], FILE *arq, int res);
+
+void criaTexto(double x, double y, char texto[], FILE *arq);
+
+void criaSvgbb(Formas forma[],char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]);
 
 #endif

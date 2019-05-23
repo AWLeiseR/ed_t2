@@ -11,4 +11,5 @@ double max(double n1,double n2);
 double min(double n1,double n2);
 //verirfica se ha colisao ou nao, retorna 1 para sim e 0 para nao
 int collision(double recX,double recY,double recW,double recH,double cX,double cY,double cR);
+
 #endif

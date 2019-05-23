@@ -4,22 +4,26 @@
 
 typedef struct{
     int id;
-    double x,y;
+    double x;
+    double y;
     char stroke[15];
     char fill[15];
     double strokeWidth;
-    double h,w;
+    double h;
+    double w;
 }Retangulo;
 
-void defineRetangulo(Retangulo rec, int i, double pX, double pY, char pStroke[], char pFill[], double pStrokeWidth, double pH, double pW){
+void defineRetangulo(Retangulo rec, double i, double pX, double pY, double pH, double pW, char pStroke[], char pFill[], double pStrokeWidth){
+    printf("%lf,%lf,%lf,%s,%s,%lf,%lf",i,pX,pY,pStroke,pFill,pH,pW);
     rec.id=i;
     rec.x=pX;
     rec.y=pY;
+   printf(">%s< \n",pStroke);
     strcpy(rec.stroke,pStroke);
     strcpy(rec.fill,pFill);
     rec.strokeWidth=pStrokeWidth;
     rec.h=pH;
-    rec.w=pW;
+    //rec.w=10.0;
 }
 
 int pontoInteriorRetangulo(double px, double py, double cx1, double cy1, double cx2, double cy2){

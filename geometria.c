@@ -38,7 +38,7 @@ int collision(double recX,double recY,double recW,double recH,double cX,double c
         return 0;
 }
 
-int sobreposicao(Formas forma1,Formas forma2, FILE *arq3){
+int sobreposicao(Forma forma1,Forma forma2, FILE *arq3){
     double cx1, cy1,cx2,cy2,r1,r2,w1,h1,w2,h2;
     char tipo1, tipo2;
     //res(resultado),dis(distancia),raios(soma dos raios ou so o raio)
