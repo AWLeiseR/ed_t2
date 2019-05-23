@@ -14,12 +14,12 @@
 typedef struct{
     char tipo;
     union{
-        Retangulo retangulo;
-        Circulo circulo;
-        Quadra quadra;
-        Hidrante hidrantes;
-        Semaforo semaforo;
-        Radio radio;
+        Retangulo *retangulo;
+        Circulo *circulo;
+        Quadra *quadra;
+        Hidrante *hidrantes;
+        Semaforo *semaforo;
+        Radio *radio;
     };
 }Forma;
 
@@ -137,7 +137,7 @@ int buscaCep(ListaFiguras* list, char cep[]){
 
 
 
-Item setRetangulo(Retangulo rec){
+Item* setRetangulo(Retangulo *rec){
     Item item;
     item.forma->tipo='r';
     item.forma->retangulo=rec;

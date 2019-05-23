@@ -24,18 +24,18 @@ ListaFiguras* createLista();
 void inicializaLista();
 
 //retorna o tamanho da lista
-int lenght(ListaFiguras list);
+int lenght(ListaFiguras *list);
 
 //insere um elemento na lista e retorna um indicador (ver sobre esse indicador)
-int insert(ListaFiguras list, Item info);
+int insert(ListaFiguras *list, Item info);
 
 
 
 //remove um elemento da lista 
-void delet(ListaFiguras list, int p);
+void delet(ListaFiguras *list, int p);
 
 //define um retangulo
-void setRetangulo(ListaFiguras list, Retangulo rec);
+void setRetangulo(ListaFiguras *list, Retangulo rec);
 
 //define um circulo
 void setCirculo(int id,double x, double y);

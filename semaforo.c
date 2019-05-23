@@ -4,6 +4,10 @@ typedef struct{
     double y;
 }Semaforo;
 
+Semaforo* criaSemaforo(){
+    Semaforo *semaforo=malloc(sizeof(Semaforo));
+}
+
 void defineSemaforo(int i, double pX, double pY){
     Semaforo semaforo;
     semaforo.id=i;
@@ -11,9 +15,9 @@ void defineSemaforo(int i, double pX, double pY){
     semaforo.y=pY;
 }
 
-char* deslocaSemaforo(Semaforo semaforo, double dx, double dy){
-    semaforo.x=x+dx;
-    semaforo.y=y+dy;
+char* deslocaSemaforo(Semaforo *semaforo, double dx, double dy){
+    semaforo->x=semaforo->x+dx;
+    semaforo->y=semaforo->y+dy;
 
-    return semaforo.id;
+    return semaforo->id;
 }

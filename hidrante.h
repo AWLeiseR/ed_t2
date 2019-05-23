@@ -5,7 +5,7 @@ typedef void* Hidrante;
 Hidrante* criaHidrante();
 
 //define hidrante
-void defineHidrante(Hidrante hidrante, int i, double pX, double pY);
+void defineHidrante(Hidrante *hidrante, char i[], double pX, double pY);
 //desloca hidrante e retorna um ponteiro para o id
-char* deslocaHidrante(Hidrante hidrante, double dx, double dy);
+char* deslocaHidrante(Hidrante *hidrante, double dx, double dy);
 #endif

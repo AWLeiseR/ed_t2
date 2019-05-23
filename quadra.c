@@ -18,18 +18,18 @@ Quadra* criaQuadra(){
     return qua;
 }
 
-void defineQuadra(char pCep[],double pX, double pY, double pW, double pH){
-    Quadra quadra;
-    strcpy(quadra.cep,pCep);
-    quadra.x=pX;
-    quadra.y=pY;
-    quadra.w=pW;
-    quadra.h=pH;
+void defineQuadra(Quadra *quadra, char pCep[],double pX, double pY, double pW, double pH){
+    
+    strcpy(quadra->cep,pCep);
+    quadra->x=pX;
+    quadra->y=pY;
+    quadra->w=pW;
+    quadra->h=pH;
 }
 
-char* mudarCor(Quadra quadra, char cstrk[]){
-    strcpy(quadra.cstrk,cstrk);
-    return quadra.cep;
+char* mudarCor(Quadra *quadra, char cstrk[]){
+    strcpy(quadra->cstrk,cstrk);
+    return quadra->cep;
 }
 
 char* deslocaQuadra(Quadra *quadra, double dx, double dy){

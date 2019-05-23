@@ -13,8 +13,8 @@ Hidrante* criaHidrante(){
     return hid;
 }
 
-void defineHidrante(Hidrante* hidrante, int i, double pX, double pY){
-    hidrante->id=i;
+void defineHidrante(Hidrante* hidrante, char i[], double pX, double pY){
+    strcpy(hidrante->id,i);
     hidrante->x=pX;
     hidrante->y=pY;
 }

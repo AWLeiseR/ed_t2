@@ -2,6 +2,8 @@
 #define _RETANGULO_H
 //declaração de retangulo
 typedef void* Retangulo;
+//aloca um retangulo
+Retangulo* criaRetangulo();
 
 //define um retangulo
 void defineRetangulo(Retangulo rec, double i, double pX, double pY, double pH, double pW, char pStroke[], char pFill[], double pStrokeWidth);

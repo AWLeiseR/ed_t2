@@ -12,6 +12,7 @@ typedef struct{
     double stroke_width;
     
 }Circulo;
+
 Circulo* criaCirculo(){
     Circulo *cir=malloc(sizeof(Circulo));
     return cir;
