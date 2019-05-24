@@ -33,12 +33,15 @@ int insert(ListaFiguras *list, Item info);
 
 //remove um elemento da lista 
 void delet(ListaFiguras *list, int p);
-
+//desaloca a lista
+void freeList(ListaFiguras *list);
 //define um retangulo
 Item* setRetangulo( Retangulo rec);
 
 //define um circulo
 Item* setCirculo(Circulo *cir);
+
+void imprimir(ListaFiguras *list);
 
 //define um quadra
 void setQuadra(char cep [],Quadra quadra);

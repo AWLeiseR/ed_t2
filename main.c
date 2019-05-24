@@ -164,18 +164,32 @@ int main(int argc, char *argv[]){
     printf("\n%s  %s",nomeqry,sufixoqry);*/
     ListaFiguras* list;
     list=createLista();
+    int i=0;
+    int a=0;
     Circulo *cir;
-    cir=criaCirculo();
-    Item *item;
-    char fill[15]="green";
-    char stroke[15]="blue";
-    defineCirculo(cir,1,20,10,10,"blue","green",4.0);
+    while(i<10){
+        
+        cir=criaCirculo();
+        char fill[15]="green";
+        char stroke[15]="blue";
+        defineCirculo(cir,1,20,10,10,"blue","green",4.0);
     
-    item=setCirculo(cir);
-  
-    free(list);
+        insert(list,cir);
+        i++;
+    }
+    
+    imprimir(list);
+    delet(list,5);
+    printf("\n=============================\n");
+
+    imprimir(list);
+    delet(list,0);
+     printf("\n=============================\n");
+
+    imprimir(list);
+    freeList(list);
     free(cir);
-    free(item);
+ 
     //free(nomegeo);
     //free(nomeqry);
     //free(dirbase);

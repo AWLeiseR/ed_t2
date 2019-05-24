@@ -109,18 +109,31 @@ void imprimir(ListaFiguras* list){
     list->primeiro=primeiro;
 }
 
-void delet(ListaFiguras* list, int p){
+list* delet(ListaFiguras* list, int p){
     int antLivre;
     antLivre=list->livre;
-    if(list->primeiro != p){
-        list->info[p-1].prox=p+1;
-        list->info[p+1].ant=p-1;
-    }    
-    list->info[p].prox=list->livre;
-    list->info[p].ant=-1;
+    if(list->primeiro == p && list->ultimo==p){
+
+    }else if(list->primeiro == p){
+        list->info[list->info[p].prox].ant=-1;
+        
+    }else if(list->ultimo==p){
+        list->info
+    }else{
+        list->info[list->info[p].prox].ant=list->info[p].ant;
+        list->info[list->info[p].ant].prox=list->info[p].prox; 
+    }   
+    list->primeiro=list->info[p].prox;
     list->livre=p;
+    
+
+    return list;
 }
 
+void freeList(ListaFiguras *list){
+    free(list->info);
+    free(list);
+}
 //arrumar
 int buscaCep(ListaFiguras* list, char cep[]){
     int i;
