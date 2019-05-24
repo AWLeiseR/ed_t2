@@ -109,25 +109,27 @@ void imprimir(ListaFiguras* list){
     list->primeiro=primeiro;
 }
 
-list* delet(ListaFiguras* list, int p){
+void delet(ListaFiguras* list, int p){
     int antLivre;
     antLivre=list->livre;
     if(list->primeiro == p && list->ultimo==p){
-
+        list->info[p].prox=list->livre;
+        list->primeiro=-1;
+        list->ultimo=-1;
     }else if(list->primeiro == p){
         list->info[list->info[p].prox].ant=-1;
-        
+        list->primeiro=list->info[p].prox;
+        list->info[p].prox=list->livre;
     }else if(list->ultimo==p){
-        list->info
+        list->info[p].prox=list->livre;
+        list->info[list->info[p].ant].prox=-1;
+        list->ultimo=list->info[p].ant;
     }else{
         list->info[list->info[p].prox].ant=list->info[p].ant;
-        list->info[list->info[p].ant].prox=list->info[p].prox; 
-    }   
-    list->primeiro=list->info[p].prox;
-    list->livre=p;
-    
-
-    return list;
+        list->info[list->info[p].ant].prox=list->info[p].prox;
+        
+    } 
+    list->livre=p;   
 }
 
 void freeList(ListaFiguras *list){

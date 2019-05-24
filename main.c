@@ -166,15 +166,16 @@ int main(int argc, char *argv[]){
     list=createLista();
     int i=0;
     int a=0;
-    Circulo *cir;
+    Retangulo *rec;
     while(i<10){
         
-        cir=criaCirculo();
+        rec=criaRetangulo();
         char fill[15]="green";
         char stroke[15]="blue";
-        defineCirculo(cir,1,20,10,10,"blue","green",4.0);
+        defineRetangulo(rec,a,20,10,10,10,"blue","green",4.0);
     
-        insert(list,cir);
+        insert(list,rec);
+        a++;
         i++;
     }
     
@@ -188,7 +189,7 @@ int main(int argc, char *argv[]){
 
     imprimir(list);
     freeList(list);
-    free(cir);
+    free(rec);
  
     //free(nomegeo);
     //free(nomeqry);

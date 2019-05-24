@@ -8,11 +8,10 @@ Semaforo* criaSemaforo(){
     Semaforo *semaforo=malloc(sizeof(Semaforo));
 }
 
-void defineSemaforo(int i, double pX, double pY){
-    Semaforo semaforo;
-    semaforo.id=i;
-    semaforo.x=pX;
-    semaforo.y=pY;
+void defineSemaforo(Semaforo *semaforo, char i[], double pX, double pY){
+    strcmp(semaforo->id,i);
+    semaforo->x=pX;
+    semaforo->y=pY;
 }
 
 char* deslocaSemaforo(Semaforo *semaforo, double dx, double dy){
