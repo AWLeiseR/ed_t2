@@ -5,10 +5,7 @@ typedef void* Quadra;
 Quadra* criaQuadra();
 
 //define uma quadrass
-void defineQuadra(Quadra *quadra,char pCep[],double pX, double pY, double pW, double pH);
-
-
-void defineCorQuadra(Quadra *quadra, char pCfill[], char pCstrk[],double pSw);
+void defineQuadra(Quadra *quadra, char pCep[],double pX, double pY, double pW, double pH,char pCfill[], char pCstrk[],double pSw);
 //muda a cor do stroke e retorna um ponteiro para o cep
 char* mudarCor(Quadra *quadra, char cstrk[]);
 //desloca a quadra e retorna um ponteiro para cep

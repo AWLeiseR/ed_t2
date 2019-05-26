@@ -7,13 +7,9 @@
 #include"semaforo.h"
 #include"hidrante.h"
 #include"radioBase.h"
+#include"texto.h"
 
-void leituraGeo(char address[]){
-    ListaFiguras *listFig;
-    ListaFiguras *listQua;
-    ListaFiguras *listSem;
-    ListaFiguras *listHid;
-    ListaFiguras *listRad;
+void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listSem,ListaFiguras *listHid,ListaFiguras *listRad){
     Circulo *cir;
     Retangulo *rec;
     Quadra *qua;
@@ -23,7 +19,8 @@ void leituraGeo(char address[]){
     Texto *texto;
     FILE* arq;
     //char que recebe o identificador de tipo
-    char cfill[20], cstrk[20];
+    char cfill[20] = "yellow";
+    char cstrk[20] = "blue";
     char comando[4];
     //string
     char linha[50];
@@ -32,7 +29,7 @@ void leituraGeo(char address[]){
     //inteiro que recebe o identificador das formas
     int id;
     int numQua,numHid,numSem,numRa;
-    int i=1000;
+    int padrao=1000;
     double x,y,w,h,r;
     double cw=2.0;
     double rw=1.0;
@@ -40,11 +37,7 @@ void leituraGeo(char address[]){
     char *line_buf=NULL;
     size_t line_buf_size = 0;
     ssize_t line_size;
-    listFig=createLista();
-    listQua=createLista();
-    listSem=createLista();
-    listHid=createLista();
-    listRad=createLista();
+   
     //abre o arquivo svg
     arq=fopen(address,"r");
     //testa se o ponteiro é null
@@ -69,14 +62,14 @@ void leituraGeo(char address[]){
                 //printf("%c %d %lf %lf %lf %s %s\n",forma[id].tipo,forma[id].i,forma[id].r,forma[id].cx,forma[id].cy,forma[id].borda,forma[id].dentro);
         }else if(strcmp("r",comando)==0){//'r',  retangulo               
                 //le tquatro doubles responsaveis pel ancora(canto superio esquerdo) e comprimento e altura depois duas strings responsaveis pelas cores de dentro e da borda
-                fscanf(arq,"%d %lf %lf %lf %lf %s %s",&id,&w,&h,&x,&y,cstrk,cfill,rw);
+                fscanf(arq,"%d %lf %lf %lf %lf %s %s",&id,&w,&h,&x,&y,cstrk,cfill);
                 rec=criaRetangulo();
-                defineRetangulo(rec,id,x,y,h,w,cstrk,cfill);
-                inser(listFig,cir);
+                defineRetangulo(rec,id,x,y,h,w,cstrk,cfill,rw);
+                insert(listFig,cir);
                 //printf("%c %d %lf %lf %lf %lf %s %s\n",forma[id].tipo,forma[id].i,forma[id].w,forma[id].h,forma[id].cx,forma[id].cy,forma[id].borda,forma[id].dentro);
         }else if(strcmp("nx",comando)){// 'nx'
                 //pega o numero do nx  
-                fscanf(arq,"%d %d %d %d %d",i,numQua,numHid,numSem,numRa);
+                fscanf(arq,"%d %d %d %d %d",padrao,numQua,numHid,numSem,numRa);
               
                 
         }else if(strcmp("t",comando)){//caso for 't',  texto
@@ -91,22 +84,22 @@ void leituraGeo(char address[]){
         }else if(strcmp("q",comando)==0){
             fscanf(arq,"%s %lf %lf %lf %lf",cep,&x,&y,&w,&h);
             qua=criaQuadra();
-            defineQuadra(qua,cep,x,y,w,h);
+            defineQuadra(qua,cep,x,y,w,h,cfill,cstrk,sw);
             insert(listQua,qua);
 
             printf("\nquadra\n");
 
         }else if(strcmp("h",comando)==0){
             fscanf(arq,"%s %lf %lf",i,&x,&y);
-            hidrante=criahidrante();
-            defineHidrante(hidrante,i,x,y);
+            hidrante=criaHidrante();
+            defineHidrante(hidrante,i,x,y,cfill,cstrk,sw);
             insert(listHid,hidrante);
             printf("\nHidrante\n");
                 
         }else if(strcmp("s",comando)==0){
             fscanf(arq,"%s %lf %lf",i,&x,&y);
             se=criaSemaforo();
-            defineSemaforo(se,i,x,y);
+            defineSemaforo(se,i,x,y,cfill,cstrk,sw);
             insert(listSem,se);
             printf("\nSemafaro\n");
 

@@ -11,14 +11,11 @@ Semaforo* criaSemaforo(){
     Semaforo *semaforo=malloc(sizeof(Semaforo));
 }
 
-void defineSemaforo(Semaforo *semaforo, char i[], double pX, double pY){
+void defineSemaforo(Semaforo *semaforo, char i[], double pX, double pY,, char pCfill[], char pCstrk[],double pSw){
     strcmp(semaforo->id,i);
     semaforo->x=pX;
     semaforo->y=pY;
-}
-
-void defineCorSemaforo(Semaforo *semaforo, char pCfill[], char pCstrk[],double pSw){
-    strcpy(semaforo->cfill,pCfill);
+      strcpy(semaforo->cfill,pCfill);
     strcpy(semaforo->cstrk,pCstrk);
     semaforo->sw=pSw;
 

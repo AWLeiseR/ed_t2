@@ -2,7 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lista.h"
-
+#include"geofile.c"
+#include"figuras.h"
+#include"quadra.h"
+#include"semaforo.h"
+#include"hidrante.h"
+#include"radioBase.h"
 
 
 
@@ -59,7 +64,13 @@ char *trataBarra(char path[]){
 
 int main(int argc, char *argv[]){
     //comeca com um pq o argc[0] e o nome do arquivo chamado
-   /* int i=1;
+    ListaFiguras *listFig;
+    ListaFiguras *listQua;
+    ListaFiguras *listSem;
+    ListaFiguras *listHid;
+    ListaFiguras *listRad;
+   
+    int i=1;
     //nome do arquivo .geo
     char *nomegeo=NULL;
     //diretorio de base
@@ -81,6 +92,13 @@ int main(int argc, char *argv[]){
     char *semcunsulta;
 
     char nomesvg[]=".svg";
+
+    listFig=createLista();
+    listQua=createLista();
+    listSem=createLista();
+    listHid=createLista();
+    listRad=createLista();
+
 
     //varre os parametros digitados no terminal
    while(i<argc){
@@ -158,45 +176,18 @@ int main(int argc, char *argv[]){
         sprintf(pathqry,"%s/%s",dirbase,nomeqry);
     }
 
-    leituraGeo(pathgeo);
+    leituraGeo(pathgeo,listFig,listQua,listSem,listHid,listRad);
     
     printf("\n%s  %s",nomegeo,sufixogeo);
-    printf("\n%s  %s",nomeqry,sufixoqry);*/
-    ListaFiguras* list;
-    list=createLista();
-    int i=0;
-    int a=0;
-    Retangulo *rec;
-    while(i<10){
-        
-        rec=criaRetangulo();
-        char fill[15]="green";
-        char stroke[15]="blue";
-        defineRetangulo(rec,a,20,10,10,10,"blue","green",4.0);
+    printf("\n%s  %s",nomeqry,sufixoqry);
     
-        insert(list,rec);
-        a++;
-        i++;
-    }
-    
-    imprimir(list);
-    delet(list,5);
-    printf("\n=============================\n");
-
-    imprimir(list);
-    delet(list,0);
-     printf("\n=============================\n");
-
-    imprimir(list);
-    freeList(list);
-    free(rec);
  
-    //free(nomegeo);
-    //free(nomeqry);
-    //free(dirbase);
-    //free(dirsaida);
-    //free(pathgeo);
-    //free(pathqry);
+    free(nomegeo);
+    free(nomeqry);
+    free(dirbase);
+    free(dirsaida);
+    free(pathgeo);
+    free(pathqry);
 
     return 0;
 }

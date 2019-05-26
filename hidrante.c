@@ -17,17 +17,13 @@ Hidrante* criaHidrante(){
     return hid;
 }
 
-void defineHidrante(Hidrante* hidrante, char i[], double pX, double pY){
+void defineHidrante(Hidrante* hidrante, char i[], double pX, double pY, char pCfill[], char pCstrk[],double pSw){
     strcpy(hidrante->id,i);
     hidrante->x=pX;
     hidrante->y=pY;
-}
-
-void defineCorHidrante(Hidrante *hidrante, char pCfill[], char pCstrk[],double pSw){
     strcpy(hidrante->cfill,pCfill);
     strcpy(hidrante->cstrk,pCstrk);
     hidrante->sw=pSw;
-
 }
 
 char* deslocaHidrante(Hidrante *hidrante, double dx, double dy){

@@ -4,8 +4,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include"circulo.h"
-#include"retangulo.h"
+#include"figuras.h"
 #include"quadra.h"
 #include"semaforo.h"
 #include"hidrante.h"

@@ -13,18 +13,14 @@ typedef struct{
 Radio* criaRadio(){
     Radio *radio=malloc(sizeof(radio));
 }
-void defineRadio(Radio *radio,char i[], double pX,double pY){
+void defineRadio(Radio *radio,char i[], double pX,double pY, char pCfill[], char pCstrk[],double pSw){
     
     strcpy(radio->id,i);
     radio->x=pX;
     radio->y=pY;
-}
-
-void defineCorRadio(Radio *radio, char pCfill[], char pCstrk[],double pSw){
-    strcpy(radio->cfill,pCfill);
+     strcpy(radio->cfill,pCfill);
     strcpy(radio->cstrk,pCstrk);
     radio->sw=pSw;
-
 }
 
 char* deslocaRadio(Radio *radio, double dx, double dy){
