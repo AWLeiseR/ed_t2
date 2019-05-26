@@ -3,7 +3,11 @@
 #include <stdio.h>
 typedef struct{
     char id[10];
-    double x,y;
+    double x;
+    double y;
+    double sw;
+    char cfill[20];
+    char cstrk[20];
 }Radio;
 
 Radio* criaRadio(){
@@ -14,6 +18,13 @@ void defineRadio(Radio *radio,char i[], double pX,double pY){
     strcpy(radio->id,i);
     radio->x=pX;
     radio->y=pY;
+}
+
+void defineCorRadio(Radio *radio, char pCfill[], char pCstrk[],double pSw){
+    strcpy(radio->cfill,pCfill);
+    strcpy(radio->cstrk,pCstrk);
+    radio->sw=pSw;
+
 }
 
 char* deslocaRadio(Radio *radio, double dx, double dy){

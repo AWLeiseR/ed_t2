@@ -4,7 +4,11 @@
 
 typedef struct{
     char id[10];
-    double x,y;
+    double x;
+    double y;
+    double sw;
+    char cfill[20];
+    char cstrk[20];
 }Hidrante;
 
 
@@ -17,6 +21,13 @@ void defineHidrante(Hidrante* hidrante, char i[], double pX, double pY){
     strcpy(hidrante->id,i);
     hidrante->x=pX;
     hidrante->y=pY;
+}
+
+void defineCorHidrante(Hidrante *hidrante, char pCfill[], char pCstrk[],double pSw){
+    strcpy(hidrante->cfill,pCfill);
+    strcpy(hidrante->cstrk,pCstrk);
+    hidrante->sw=pSw;
+
 }
 
 char* deslocaHidrante(Hidrante *hidrante, double dx, double dy){

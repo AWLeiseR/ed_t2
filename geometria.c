@@ -1,7 +1,7 @@
 #include<math.h>
 #include"lista.h"
-#include"circulo.h"
-#include"retangulo.h"
+#include"figuras.h"
+
 
 
 /*calcula a distancia euclidiana entre os pontoos (x1,y1) e (x2,y2)*/

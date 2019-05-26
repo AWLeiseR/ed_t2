@@ -2,16 +2,14 @@
 #include<stdlib.h>
 #include<string.h>
 #include"lista.h"
-#include"circulo.h"
-#include"retangulo.h"
+#include"figuras.h"
 #include"quadra.h"
 #include"semaforo.h"
 #include"hidrante.h"
 #include"radioBase.h"
 
 void leituraGeo(char address[]){
-    ListaFiguras *listRec;
-    ListaFiguras *listCir;
+    ListaFiguras *listFig;
     ListaFiguras *listQua;
     ListaFiguras *listSem;
     ListaFiguras *listHid;
@@ -36,12 +34,13 @@ void leituraGeo(char address[]){
     int numQua,numHid,numSem,numRa;
     int i=1000;
     double x,y,w,h,r;
-    double cw, rw, sw;    
+    double cw=2.0;
+    double rw=1.0;
+    double sw;    
     char *line_buf=NULL;
     size_t line_buf_size = 0;
     ssize_t line_size;
-    listRec=createLista();
-    listCir=createLista();
+    listFig=createLista();
     listQua=createLista();
     listSem=createLista();
     listHid=createLista();
@@ -65,15 +64,15 @@ void leituraGeo(char address[]){
             //lea tres doubles responsaveis pelo centro(x,y) e raio depois duas strings responsaveis pelas cores de dentro e da borda
             fscanf(arq,"%d %lf %lf %lf %s %s",&id,&r,&x,&y,cstrk,cfill);
             cir=criaCirculo();
-            defineCirculo(cir,id,x,y,r,cstrk,cfill,2);
-            insert(listCir,cir);                    
+            defineCirculo(cir,id,x,y,r,cstrk,cfill,cw);
+            insert(listFig,cir);                    
                 //printf("%c %d %lf %lf %lf %s %s\n",forma[id].tipo,forma[id].i,forma[id].r,forma[id].cx,forma[id].cy,forma[id].borda,forma[id].dentro);
         }else if(strcmp("r",comando)==0){//'r',  retangulo               
                 //le tquatro doubles responsaveis pel ancora(canto superio esquerdo) e comprimento e altura depois duas strings responsaveis pelas cores de dentro e da borda
-                fscanf(arq,"%d %lf %lf %lf %lf %s %s",&id,&w,&h,&x,&y,cstrk,cfill);
+                fscanf(arq,"%d %lf %lf %lf %lf %s %s",&id,&w,&h,&x,&y,cstrk,cfill,rw);
                 rec=criaRetangulo();
                 defineRetangulo(rec,id,x,y,h,w,cstrk,cfill);
-                inser(listRec,cir);
+                inser(listFig,cir);
                 //printf("%c %d %lf %lf %lf %lf %s %s\n",forma[id].tipo,forma[id].i,forma[id].w,forma[id].h,forma[id].cx,forma[id].cy,forma[id].borda,forma[id].dentro);
         }else if(strcmp("nx",comando)){// 'nx'
                 //pega o numero do nx  

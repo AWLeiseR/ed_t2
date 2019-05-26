@@ -27,6 +27,13 @@ void defineQuadra(Quadra *quadra, char pCep[],double pX, double pY, double pW, d
     quadra->h=pH;
 }
 
+void defineCorQuadra(Quadra *quadra, char pCfill[], char pCstrk[],double pSw){
+    strcpy(quadra->cfill,pCfill);
+    strcpy(quadra->cstrk,pCstrk);
+    quadra->sw=pSw;
+
+}
+
 char* mudarCor(Quadra *quadra, char cstrk[]){
     strcpy(quadra->cstrk,cstrk);
     return quadra->cep;
