@@ -44,11 +44,11 @@ void defineCirculo(Circulo *circulo,int i,double pX,double pY, double pR,char pS
 }
 
 void defineRetangulo(Retangulo *rec, double i, double pX, double pY, double pH, double pW, char pStroke[], char pFill[], double pStrokeWidth){
-    printf("%lf,%lf,%lf,%s,%s,%lf,%lf",i,pX,pY,pStroke,pFill,pH,pW);
+    //printf("%lf,%lf,%lf,%s,%s,%lf,%lf",i,pX,pY,pStroke,pFill,pH,pW);
     rec->id=i;
     rec->x=pX;
     rec->y=pY;
-   printf(">%s< \n",pStroke);
+   //printf(">%s< \n",pStroke);
     strcpy(rec->stroke,pStroke);
     strcpy(rec->fill,pFill);
     rec->strokeWidth=pStrokeWidth;

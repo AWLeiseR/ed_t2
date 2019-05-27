@@ -79,3 +79,21 @@ void criaSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int nx
 
     fclose(svg);
 }
+
+void criaSvg(ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listRad,ListaFiguras *listHid,ListaFiguras *listSem,char saida[]){
+    FILE *svg;
+    svg=fopen(saida,"w");
+    int fig,qua,rad,hid,sem;
+    fig=lenght(listFig);
+    qua=lenght(listQua);
+    rad=lenght(listRad);
+    hid=lenght(listHid);
+    sem=lenght(listSem);
+    if(svg==NULL){
+        perror("");
+        exit(1);
+    }
+    
+    cabecalho(svg);
+
+}

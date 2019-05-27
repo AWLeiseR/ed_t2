@@ -2,16 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lista.h"
-#include"geofile.c"
-#include"figuras.h"
-#include"quadra.h"
-#include"semaforo.h"
-#include"hidrante.h"
-#include"radioBase.h"
+#include "geofile.h"
+#include "figuras.h"
+#include "quadra.h"
+#include "semaforo.h"
+#include "hidrante.h"
+#include "radioBase.h"
+#include "svgFile.h"
 
 
 
-char *trataBarra(char path[]){
+char* trataBarra(char path[]){
     int i,j,x,y,barra;
     char letra;
     char *sufixo;
@@ -155,28 +156,35 @@ int main(int argc, char *argv[]){
     if(dirbase == NULL && nomeqry == NULL){
         //aloca memoria do tamanho de nomegeo +1
          pathgeo = (char *)malloc((strlen(nomegeo)+1)*sizeof(char));
+         saidasvg=(char*)malloc((strlen(nomegeo)+(strlen(nomesvg)+1)*sizeof(char)));
         //pathqry = (char *)malloc((strlen(nomeqry)+1)*sizeof(char));
         //sprintf escreve dentro de pathgeo
         sprintf(pathgeo,"%s",nomegeo);
         //sprintf(pathqry,"%s",nomeqry);
     }else if(nomeqry == NULL){
         pathgeo = (char *)malloc((strlen(nomegeo)+strlen(dirbase)+2)*sizeof(char));
+        saidasvg=(char*)malloc((strlen(nomegeo)+(strlen(nomesvg)+strlen(dirbase)+1)*sizeof(char)));
         sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
     }else if(dirbase == NULL){
         sprintf(pathgeo,"%s",nomegeo);
         pathgeo = (char *)malloc((strlen(nomegeo)+1)*sizeof(char));
         pathqry = (char *)malloc((strlen(nomeqry)+strlen(dirbase)+2)*sizeof(char));
+        saidasvg=(char*)malloc((strlen(nomegeo)+strlen(nomesvg)+1)*sizeof(char));
         sprintf(pathqry,"%s/%s",dirbase,nomeqry);
     }else{
         //aloca memoria do tamanho de nomegeo+dirbase
         pathgeo = (char *)malloc((strlen(nomegeo)+strlen(dirbase)+2)*sizeof(char));
         pathqry = (char *)malloc((strlen(nomeqry)+strlen(dirbase)+2)*sizeof(char));
+        saidasvg=(char*)malloc((strlen(nomegeo)+strlen(nomesvg)+1)*sizeof(char));
         //sprintf escreve dentro de pathgeo
         sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
         sprintf(pathqry,"%s/%s",dirbase,nomeqry);
     }
 
     leituraGeo(pathgeo,listFig,listQua,listSem,listHid,listRad);
+    
+    sprintf(saidasvg,"%s%s",nomegeo,nomesvg);
+    criaSvg(listFig,listQua,listRad,listHid,listSem,saidasvg);
     
     printf("\n%s  %s",nomegeo,sufixogeo);
     printf("\n%s  %s",nomeqry,sufixoqry);

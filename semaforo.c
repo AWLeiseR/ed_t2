@@ -1,3 +1,6 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 typedef struct{
     char id[10];
     double x;
@@ -11,7 +14,7 @@ Semaforo* criaSemaforo(){
     Semaforo *semaforo=malloc(sizeof(Semaforo));
 }
 
-void defineSemaforo(Semaforo *semaforo, char i[], double pX, double pY,, char pCfill[], char pCstrk[],double pSw){
+void defineSemaforo(Semaforo *semaforo, char i[], double pX, double pY, char pCfill[], char pCstrk[],double pSw){
     strcmp(semaforo->id,i);
     semaforo->x=pX;
     semaforo->y=pY;

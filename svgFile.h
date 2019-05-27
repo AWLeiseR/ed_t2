@@ -22,6 +22,8 @@ void criaRetangulodash(double x, double y, double w, double h, char stroke[], FI
 
 void criaTexto(double x, double y, char texto[], FILE *arq);
 
-void criaSvgbb(Formas forma[],char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]);
+void criaSvgbb(ListaFiguras *,char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]);
+
+void criaSvg(ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listRad,ListaFiguras *listHid,ListaFiguras *listSem,char saida[]);
 
 #endif
