@@ -1,4 +1,7 @@
-
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include"lista.h"
 //imprimir o cabecalho do svg
 void cabecalho(FILE* arq){
     fprintf(arq,"<svg>");
@@ -10,37 +13,37 @@ void rodape(FILE* arq){
 }
 
 //imprimi retangulo
-void criaRetangulo(FILE* arq){
-    fprintf(arq,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"none\" stroke=\"%s\" stroke-width=\"2\" />",x,y,w,h,stroke);
+void imprimiRetangulo(FILE* arq,double x,double y,double h, double w, char cor1[],char cor2[]){
+    fprintf(arq,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\"  stroke=\"%s\" fill=\"%s\" stroke-width=\"2\" />",x,y,w,h,cor1,cor2);
 }
 
 //imprimi Circulo
-void criaCirculo(FILE* arq){
+void imprimiCirculo(FILE* arq,double x,double y, double r, char cor1[],char cor2[]){
 
-    fprintf(arq,"<circle cx=\"%lf\" cy=\"%lf\" r=\"5\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",x,y,cor,cor);
+    fprintf(arq,"<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",x,y,r,cor1,cor2);
 }
 
 //imprimi ponto(circulo de raio 1 ou 0)
-void criaPonto(FILE* arq){
-    fprintf(arq,"<circle cx=\"%lf\" cy=\"%lf\" r=\"1\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",x,y,cor,cor);
+void imprimiPonto(FILE* arq,double x,double y,char cor1[],char cor2[]){
+    fprintf(arq,"<circle cx=\"%lf\" cy=\"%lf\" r=\"1\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",x,y,cor1,cor2);
 }
 
-void criaLinha(double x1,double y1,double x2, double y2, FILE *arq){
+void imprimiLinha(double x1,double y1,double x2, double y2, FILE *arq){
    fprintf(arq," <line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"black\" stroke-width=\"2\" />",x1,y1,x2,y2);
 }
 
-void criaRetangulodash(double x, double y, double w, double h, char stroke[], FILE *arq, int res){
+void imprimiRetangulodash(double x, double y, double w, double h, char stroke[], FILE *arq, int res){
     if(res)
         fprintf(arq,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"none\" stroke=\"%s\" stroke-dasharray=\"5\" stroke-width:\"2\" />",x,y,w,h,stroke);
     else
      fprintf(arq,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"none\" stroke=\"%s\" stroke-width:\"2\" />",x,y,w,h,stroke);
 }
 
-void criaTexto(double x, double y, char texto[], FILE *arq){
+void imprimiTexto(double x, double y, char texto[], FILE *arq){
     fprintf(arq,"<text x=\"%lf\" y=\"%lf\" fill=\"black\">%s</text>",x,y,texto);
 }
 
-void criaSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]){
+/*void imprimiSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]){
     FILE *svg;
 
     char *saida;
@@ -62,25 +65,25 @@ void criaSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int nx
 
     for(j=0;j<=nx;j++){
         
-        switch (list.info[j]->forma.tipo){
+        switch ('c'){
 
             case 'c':
-                fprintf(svg,"<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",forma[j].cx,forma[j].cy,forma[j].r,forma[j].borda,forma[j].dentro);
-                fprintf(svg,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\"  fill=\"none\" stroke=\"%s\" stroke-width:\"1\" />",forma[j].cx-forma[j].r,forma[j].cy-forma[j].r,forma[j].r*2,forma[j].r*2,cor);
+                fprintf(svg,"<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",x,y,r,borda,dentro);
+                fprintf(svg,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\"  fill=\"none\" stroke=\"%s\" stroke-width:\"1\" />",x-r,y-r,r*2,r*2,cor);
                 break;
 
             case 'r':
-                fprintf(svg,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"%s\" stroke=\"%s\"  stroke-width:\"2\" />",forma[j].cx,forma[j].cy,forma[j].w,forma[j].h,forma[j].borda,forma[j].dentro);
-                fprintf(svg,"<ellipse cx=\"%lf\" cy=\"%lf\" rx=\"%lf\" ry=\"%lf\" fill=\"none\" stroke=\"%s\" stroke-width\"2\" />",forma[j].cx+(forma[j].w/2),forma[j].cy+(forma[j].h/2),forma[j].w/2,forma[j].h/2,cor);
+                fprintf(svg,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"%s\" stroke=\"%s\"  stroke-width:\"2\" />",x,y,w,h,borda,dentro);
+                fprintf(svg,"<ellipse cx=\"%lf\" cy=\"%lf\" rx=\"%lf\" ry=\"%lf\" fill=\"none\" stroke=\"%s\" stroke-width\"2\" />",x+(w/2),y+(h/2),w/2,h/2,cor);
                 break;
                 }
             }
     fprintf(svg,"</svg>");
 
     fclose(svg);
-}
+}*/
 
-void criaSvg(ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listRad,ListaFiguras *listHid,ListaFiguras *listSem,char saida[]){
+void imprimiSvg(ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listRad,ListaFiguras *listHid,ListaFiguras *listSem,char saida[]){
     FILE *svg;
     svg=fopen(saida,"w");
     int fig,qua,rad,hid,sem;

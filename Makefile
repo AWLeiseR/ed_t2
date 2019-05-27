@@ -6,9 +6,9 @@ OBJ_NAME = siguel
 
 
 siguel: main.o 
-	$(CC) main.o figuras.o lista.o quadra.o radioBase.o hidrante.o geofile.o semaforo.o $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+	$(CC) main.o figuras.o lista.o quadra.o radioBase.o hidrante.o geofile.o semaforo.o svgFile.o $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 
-main.o: main.c lista.o lista.h geofile.o geofile.h 
+main.o: main.c lista.o lista.h geofile.o geofile.h svgFile.o svgFile.h
 	$(CC) -c main.c
 
 lista.o: lista.c lista.h figuras.o figuras.h quadra.o quadra.h radioBase.o hidrante.o semaforo.o
@@ -28,3 +28,6 @@ hidrante.o: hidrante.c hidrante.h
 
 semaforo.o: semaforo.c semaforo.h 
 	$(CC) -c semaforo.c
+
+svgFile.o: svgFile.c svgFile.h 
+	$(CC) -c svgFile.c

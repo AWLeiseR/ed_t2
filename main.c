@@ -180,11 +180,11 @@ int main(int argc, char *argv[]){
         sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
         sprintf(pathqry,"%s/%s",dirbase,nomeqry);
     }
-
-    leituraGeo(pathgeo,listFig,listQua,listSem,listHid,listRad);
+sprintf(saidasvg,"%s%s",nomegeo,nomesvg);
+    leituraGeo(saidasvg,pathgeo,listFig,listQua,listSem,listHid,listRad);
     
-    sprintf(saidasvg,"%s%s",nomegeo,nomesvg);
-    criaSvg(listFig,listQua,listRad,listHid,listSem,saidasvg);
+    
+   // criaSvg(listFig,listQua,listRad,listHid,listSem,saidasvg);
     
     printf("\n%s  %s",nomegeo,sufixogeo);
     printf("\n%s  %s",nomeqry,sufixoqry);

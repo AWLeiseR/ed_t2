@@ -8,8 +8,9 @@
 #include"hidrante.h"
 #include"radioBase.h"
 #include"texto.h"
+#include"svgFile.h"
 
-void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listSem,ListaFiguras *listHid,ListaFiguras *listRad){
+void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listSem,ListaFiguras *listHid,ListaFiguras *listRad){
     Circulo *cir;
     Retangulo *rec;
     Quadra *qua;
@@ -18,6 +19,7 @@ void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,Lista
     Radio *radio;
     Texto *texto;
     FILE* arq;
+    FILE *svg;
     //char que recebe o identificador de tipo
     char cfill[20] = "yellow";
     char cstrk[20] = "blue";
@@ -30,7 +32,7 @@ void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,Lista
     int id;
     int numQua,numHid,numSem,numRa;
     int padrao=1000;
-    double x,y,w,h,r;
+    double x,y,w,h,r=1;
     double cw=2.0;
     double rw=1.0;
     double sw;    
@@ -46,10 +48,17 @@ void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,Lista
         perror("");
         exit(1);
     }
-   
+   svg=fopen(saidasvg,"w");
+   if(svg==NULL){
+       printf("\nNAO ENCONTRADO ARQUIVO %s\n",svg);;
+        perror("");
+        exit(1);
+   }
+    cabecalho(svg);
     //printf("\t%s\n",address);
     //loop que varre o arquivo .geo
     while(1){
+        r=1;
         //pega o comando do arquivo geo
         fscanf(arq,"%s",comando);
         // 'c', circulo
@@ -58,7 +67,8 @@ void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,Lista
             fscanf(arq,"%d %lf %lf %lf %s %s",&id,&r,&x,&y,cstrk,cfill);
             cir=criaCirculo();
             defineCirculo(cir,id,x,y,r,cstrk,cfill,cw);
-            insert(listFig,cir);                    
+            insert(listFig,cir);
+            imprimiCirculo(svg,x,y,r,cstrk,cfill);                    
                 //printf("%d %lf %lf %lf %s %s\n",id,r,x,y,cstrk,cfill);
         }else if(strcmp("r",comando)==0){//'r',  retangulo               
                 //le tquatro doubles responsaveis pel ancora(canto superio esquerdo) e comprimento e altura depois duas strings responsaveis pelas cores de dentro e da borda
@@ -66,6 +76,7 @@ void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,Lista
                 rec=criaRetangulo();
                 defineRetangulo(rec,id,x,y,h,w,cstrk,cfill,rw);
                 insert(listFig,cir);
+                imprimiRetangulo(svg,x,y,w,h,cstrk,cfill);
                 //printf("%c %d %lf %lf %lf %lf %s %s\n",forma[id].tipo,forma[id].i,forma[id].w,forma[id].h,forma[id].cx,forma[id].cy,forma[id].borda,forma[id].dentro);
         }else if(strcmp("nx",comando)==0){// 'nx'
         
@@ -88,7 +99,7 @@ void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,Lista
             qua=criaQuadra();
             defineQuadra(qua,cep,x,y,w,h,cfill,cstrk,sw);
             insert(listQua,qua);
-
+            imprimiRetangulo(svg,x,y,h,w,cstrk,cfill);
             //printf("\nquadra\n");
 
         }else if(strcmp("h",comando)==0){
@@ -97,21 +108,21 @@ void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,Lista
             defineHidrante(hidrante,i,x,y,cfill,cstrk,sw);
             insert(listHid,hidrante);
             //printf("\nHidrante\n");
-                
+            imprimiCirculo(svg,x,y,r,cstrk,cfill);
         }else if(strcmp("s",comando)==0){
             fscanf(arq,"%s %lf %lf",i,&x,&y);
             se=criaSemaforo();
             defineSemaforo(se,i,x,y,cfill,cstrk,sw);
             insert(listSem,se);
            // printf("\nSemafaro\n");
-
+            imprimiCirculo(svg,x,y,r,cstrk,cfill);
         }else if(strcmp("rb",comando)==0){
             fscanf(arq,"%s %lf %lf",&i,&x,&y);
             radio=criaRadio();
             defineRadio(radio,i,x,y,cfill,cstrk,sw);
             insert(listRad,radio);
             //printf("\nRadio-Base\n");
-
+            imprimiCirculo(svg,x,y,r,cstrk,cfill);
         }else if(strcmp("cq",comando)==0){
             fscanf(arq,"%s %s %lf", cfill, cstrk, &sw);
             //printf("\ncores 1\n");
@@ -142,9 +153,10 @@ void leituraGeo(char address[],ListaFiguras *listFig,ListaFiguras *listQua,Lista
 
         
        
-    
+    rodape(svg);
     //fecha o arquivo
     fclose(arq);
+    fclose(svg);
     printf("FIM LEITURA GEO\n");
     //reetorna o ponteiro para formas
     //return void;
