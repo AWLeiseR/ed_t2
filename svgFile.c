@@ -40,7 +40,7 @@ void criaTexto(double x, double y, char texto[], FILE *arq){
     fprintf(arq,"<text x=\"%lf\" y=\"%lf\" fill=\"black\">%s</text>",x,y,texto);
 }
 
-void criaSvgbb(Formas forma[],char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]){
+void criaSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]){
     FILE *svg;
 
     char *saida;
@@ -61,7 +61,8 @@ void criaSvgbb(Formas forma[],char *dirsaida,char sufixo[],char cor[],int nx,cha
     fprintf(svg,"<svg>");
 
     for(j=0;j<=nx;j++){
-        switch (forma[j].tipo){
+        
+        switch (list.info[j]->forma.tipo){
 
             case 'c':
                 fprintf(svg,"<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",forma[j].cx,forma[j].cy,forma[j].r,forma[j].borda,forma[j].dentro);
