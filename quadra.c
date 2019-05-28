@@ -41,7 +41,25 @@ char* deslocaQuadra(Quadra *quadra, double dx, double dy){
         quadra->x=quadra->x+dx;
         quadra->y=quadra->y+dy;
 
-        return quadra->cep;
-    
-    
+        return quadra->cep;  
+}
+
+char* getQuadraCep(Quadra *qua){
+    return qua->cep;
+}
+
+double getQuadraX(Quadra *qua){
+    return qua->x;
+}
+
+double getQuadraY(Quadra *qua){
+    return qua->y;
+}
+
+char* getQuadraCfill(Quadra *qua){
+    return qua->cfill;
+}
+
+char* getQuadraCstrk(Quadra *qua){
+    return qua->cstrk;
 }

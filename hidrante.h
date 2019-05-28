@@ -9,4 +9,14 @@ void defineHidrante(Hidrante* hidrante, char i[], double pX, double pY, char pCf
 
 //desloca hidrante e retorna um ponteiro para o id
 char* deslocaHidrante(Hidrante *hidrante, double dx, double dy);
+
+double getHidX(Hidrante *hid);
+
+double getHidY(Hidrante *hid);
+
+char* getHidId(Hidrante *hid);
+
+char* getHidCfill(hid *hid);
+
+char* getHidCstrk(Radio *hid);
 #endif

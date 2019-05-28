@@ -80,3 +80,55 @@ void deslocaRetangulo(double dx, double dy){
     cx=cx+dx;
     cy=cy+dy;
 }
+
+int getCirculoId(Circulo *cir){
+    return cir->id;
+}
+
+double getCirculoX(Circulo *cir){
+    return cir->x;
+}
+
+double getCirculoY(Circulo *cir){
+    return cir->y;
+}
+
+double getCirculoR(Circulo *cir){
+    return cir->r;
+}
+
+char* getCirculoCfill(Circulo *cir){
+    return cir->stroke;
+}
+
+char* getCirculoCstrk(Circulo *cir){
+    return cir->fill;
+}
+
+int getRetanguloId(Retangulo *rec){
+    return rec->id;
+}
+
+double getRetanguloX(Retangulo *rec){
+    return rec->x;
+}
+
+double getRetanguloY(Retangulo *rec){
+    return rec->y;
+}
+
+double getRetanguloH(Retangulo *rec){
+    return rec->h;
+}
+
+double getRetanguloW(Retangulo *rec){
+    return rec->w;
+}
+
+char* getRetanguloCfill(Retangulo *rec){
+    return rec->stroke;
+}
+
+char* getRetanguloCstrk(Retangulo *rec){
+    return rec->fill;
+}

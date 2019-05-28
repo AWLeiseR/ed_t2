@@ -34,34 +34,12 @@ int insert(ListaFiguras *list, Item info);
 void delet(ListaFiguras *list, int p);
 //desaloca a lista
 void freeList(ListaFiguras *list);
-//define um retangulo
-Item* setRetangulo( Retangulo rec);
-
-//define um circulo
-Item* setCirculo(Circulo *cir);
 
 void imprimir(ListaFiguras *list);
 
-//define um quadra
-void setQuadra(char cep [],Quadra quadra);
+//busca
+int buscaChar(ListaFiguras* list, char id[]);
 
-//define um hidrante
-void setHidrante( int id,double x, double y);
-
-//define um semafaro
-void setSemafaro(int id,double x, double y);
-
-//define uma radio-base
-void setRadio(int id,double x, double y);
-
-//retorna uma forma
-Forma getForma();
-
-//retorna a coordenada x de algum ponto
-double getX();
-
-//retorna a coordenada y de algum ponto
-double getY();
 
 #endif
 

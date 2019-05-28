@@ -32,6 +32,23 @@ char* deslocaHidrante(Hidrante *hidrante, double dx, double dy){
         hidrante->y=hidrante->y+dy;
 
         return hidrante->id;
-    
-    
+}
+
+double getHidX(Hidrante *hid){
+    return hid->x;
+}
+
+double getHidY(Hidrante *hid){
+    return hid->y;
+}
+
+char* getHidId(Hidrante *hid){
+    return hid->id;
+}
+char* getHidCfill(hid *hid){
+    return hid->cfill;
+}
+
+char* getHidCstrk(Radio *hid){
+    return hid->cstrk;
 }

@@ -11,4 +11,14 @@ char* mudarCor(Quadra *quadra, char cstrk[]);
 //desloca a quadra e retorna um ponteiro para cep
 char* deslocaQuadra(Quadra *quadra, double dx, double dy);
 
+double getQuadraX(Quadra *qua);
+
+double getQuadraY(Quadra *qua);
+
+char* getQuadraCep(Quadra *qua);
+
+char* getQuadraCfill(Quadra *qua);
+
+char* getQuadraCstrk(Quadra *qua);
+
 #endif

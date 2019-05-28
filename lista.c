@@ -35,7 +35,7 @@ typedef struct{
     int ultimo;
 }ListaFiguras;
 
-ListaFiguras* createLista(){
+ListaFiguras* createLista(int tam_lista){
     int i=0 ;
     ListaFiguras* aux;
     ListaFiguras* lista= malloc(sizeof(ListaFiguras));
@@ -136,10 +136,10 @@ void freeList(ListaFiguras *list){
     free(list);
 }
 //arrumar
-int buscaCep(ListaFiguras* list, char cep[]){
+int buscaChar(ListaFiguras* list, char id[]){
     int i;
     int tam;
-    tam=lenght(list);
+    
     for(i=0;i<tam;i++){
         //strcmp(cep,list->info[i].forma->quadra);
         if(i){
@@ -147,51 +147,5 @@ int buscaCep(ListaFiguras* list, char cep[]){
         }
     }
     return i;
-}
-
-
-
-Item* setRetangulo(Retangulo *rec){
-    Item *item;
-    item=malloc(sizeof(Item));
-    item->forma->tipo='r';
-    item->forma->retangulo=rec;
-    return item;
-}
-
-Item* setCirculo(Circulo *cir){
-    Item *item=malloc(sizeof(Item));
-    item->forma->tipo='c';
-    item->forma->circulo=cir;
-    return item;
-}
-
-void setQuadra(char cep [],Quadra quadra){
-
-}
-
-void setHidrante( int id,double x, double y){
-
-}
-
-void setSemafaro(int id,double x, double y){
-
-}
-
-void setRadio(int id,double x, double y){
-
-}
-
-Forma getForma(){
-
-}
-
-double getX(){
-
-    return 0.00;
-}
-double getY(){
-
-    return 0.00;
 }
 

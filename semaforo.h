@@ -8,4 +8,16 @@ Semaforo* criaSemaforo();
 void defineSemaforo(Semaforo *semaforo, char i[], double pX, double pYs, char pCfill[], char pCstrk[],double pSw);
 //desloca o semaforo e retorna um ponteiro para o id 
 char* deslocaSemaforo(Semaforo *semaforo, double dx, double dy);
+
+double getSemaforoX(Semaforo *se);
+
+double getSemaforoY(Semaforo *se);
+
+char* getQuadraId(Semaforo *se);
+
+char* getSeamforoCfill(Semaforo *se)
+
+char* getSeamforoCstrk(Semaforo *se);
+
+
 #endif

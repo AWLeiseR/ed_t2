@@ -7,4 +7,14 @@ Radio* criaRadio();
 void defineRadio(Radio *radio,char i[], double pX,double pY, char pCfill[], char pCstrk[],double pSw);
 //desloca radio e retorna um ponteiro para o id
 char* deslocaRadio(Radio *radio, double dx, double dy);
+
+double getRadioX(Radio *radio);
+
+double getRadioY(Radio *radio);
+
+char* getRadioId(Radio *radio);
+
+char* getRadioCfill(Radio *radio);
+
+char* getRadioCstrk(Radio *radio);
 #endif

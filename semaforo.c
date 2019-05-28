@@ -30,3 +30,23 @@ char* deslocaSemaforo(Semaforo *semaforo, double dx, double dy){
 
     return semaforo->id;
 }
+
+char* getSemaforoId(Semaforo *se){
+    return se->id;
+}
+
+double getSemaforoX(Semaforo *se){
+    return se->x;
+}
+
+double getSemaforoY(Semaforo *se){
+    return se->y;
+}
+
+char* getSeamforoCfill(Semaforo *se){
+    return se->cfill;
+}
+
+char* getSeamforoCstrk(Semaforo *se){
+    return se->cstrk;
+}

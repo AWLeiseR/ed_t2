@@ -29,3 +29,23 @@ char* deslocaRadio(Radio *radio, double dx, double dy){
 
     return radio->id;
 }
+
+char* getRadioId(Radio *radio){
+    return radio->id;
+}
+
+double getRadioX(Radio *radio){
+    return radio->x;
+}
+
+double getRadioY(Radio *radio){
+    return radio->y;
+}
+
+char* getRadioCfill(Radio *radio){
+    return radio->cfill;
+}
+
+char* getRadioCstrk(Radio *radio){
+    return radio->cstrk;
+}

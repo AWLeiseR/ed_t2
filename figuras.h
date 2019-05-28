@@ -25,4 +25,30 @@ int pontoInteriorRetangulo(double px, double py, double cx1, double cy1, double 
 
 void deslocaRetangulo(double dx, double dy);
 
+int getCirculoId(Circulo *cir);
+
+double getCirculoX(Circulo *cir);
+
+double getCirculoY(Circulo *cir);
+
+double getCirculoR(Circulo *cir);
+
+char* getCirculoCfill(Circulo *cir);
+
+char* getCirculoCstrk(Circulo *cir);
+
+double getRetanguloX(Retangulo *rec);
+
+double getRetanguloY(Retangulo *rec);
+
+double getRetanguloW(Retangulo *rec);
+
+double getRetanguloH(Retangulo *rec);
+
+int getRetanguloId(Retangulo *rec);
+
+char* getRetanguloCfill(Retangulo *rec);
+
+char* getRetanguloCstrk(Retangulo *rec);
+
 #endif

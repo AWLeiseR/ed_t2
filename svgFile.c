@@ -2,6 +2,12 @@
 #include<stdlib.h>
 #include<string.h>
 #include"lista.h"
+#include"figuras.h"
+#include"quadra.h"
+#include"semaforo.h"
+#include"hidrante.h"
+#include"radioBase.h"
+
 //imprimir o cabecalho do svg
 void cabecalho(FILE* arq){
     fprintf(arq,"<svg>");
@@ -43,12 +49,14 @@ void imprimiTexto(double x, double y, char texto[], FILE *arq){
     fprintf(arq,"<text x=\"%lf\" y=\"%lf\" fill=\"black\">%s</text>",x,y,texto);
 }
 
-/*void imprimiSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]){
+void imprimiSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]){
     FILE *svg;
-
     char *saida;
-
     int j;
+    int prox=list->primeiro;
+    double x,y,w,h,r;
+    char tipo;
+    char *borda,*dentro;
     if(nx==0)
         nx=1000;
     saida=(char *) malloc((strlen(dirsaida)+strlen(sufixo)+strlen(sufixogeo)+7)*sizeof(char));
@@ -63,10 +71,18 @@ void imprimiTexto(double x, double y, char texto[], FILE *arq){
 
     fprintf(svg,"<svg>");
 
-    for(j=0;j<=nx;j++){
-        
+    while(prox!=-1){
+        if(list->info[prox]->forma.tipo=='c'){
+            x=getCirculoX(list->info[prox]->forma.circulo);
+            y=getCirculoY(list->info[prox]->forma.circulo);
+            r=getCirculoR(list->info[prox]->forma.circulo);
+        }else{
+            x=getRetanguloX(list->info[prox]->forma.retangulo);
+            y=getRetanguloY(list->info[prox]->forma.retangulo);
+            h=getRetanguloH(list->info[prox]->forma.retangulo);                    
+            w=getRetanguloW(list->info[prox]->forma.retangulo);
+        }
         switch ('c'){
-
             case 'c':
                 fprintf(svg,"<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",x,y,r,borda,dentro);
                 fprintf(svg,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\"  fill=\"none\" stroke=\"%s\" stroke-width:\"1\" />",x-r,y-r,r*2,r*2,cor);
@@ -77,11 +93,12 @@ void imprimiTexto(double x, double y, char texto[], FILE *arq){
                 fprintf(svg,"<ellipse cx=\"%lf\" cy=\"%lf\" rx=\"%lf\" ry=\"%lf\" fill=\"none\" stroke=\"%s\" stroke-width\"2\" />",x+(w/2),y+(h/2),w/2,h/2,cor);
                 break;
                 }
-            }
+        prox=list->info[prox].prox;        
+    }
     fprintf(svg,"</svg>");
 
     fclose(svg);
-}*/
+}
 
 void imprimiSvg(ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listRad,ListaFiguras *listHid,ListaFiguras *listSem,char saida[]){
     FILE *svg;
