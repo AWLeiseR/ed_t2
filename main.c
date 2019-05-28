@@ -180,7 +180,7 @@ int main(int argc, char *argv[]){
         sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
         sprintf(pathqry,"%s/%s",dirbase,nomeqry);
     }
-sprintf(saidasvg,"%s%s",nomegeo,nomesvg);
+    sprintf(saidasvg,"%s%s",nomegeo,nomesvg);
     leituraGeo(saidasvg,pathgeo,listFig,listQua,listSem,listHid,listRad);
     
     

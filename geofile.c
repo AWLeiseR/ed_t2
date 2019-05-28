@@ -32,9 +32,9 @@ void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFigura
     int id;
     int numQua,numHid,numSem,numRa;
     int padrao=1000;
-    double x,y,w,h,r=1;
+    double x,y,w,h,r=5;
     double cw=2.0;
-    double rw=1.0;
+    double rw=3.0;
     double sw;    
     char *line_buf=NULL;
     size_t line_buf_size = 0;
@@ -87,13 +87,12 @@ void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFigura
                 
         }else if(strcmp("t",comando)==0){//caso for 't',  texto
             
-                /*//pega as coordenadas do texto
+                //pega as coordenadas do texto
                 fscanf(arq,"%lf %lf",&x,&y);
                 //pega a linha toda de testo
                 line_size = getline(&line_buf, &line_buf_size, arq);
                 //imprime no arquivo
-                criaTexto(x,y,line_buf,arq3);
-                criaTexto(x,y,line_buf,svgsemconsulta);*/
+                imprimiTexto(x,y,line_buf,svg);
         }else if(strcmp("q",comando)==0){
             fscanf(arq,"%s %lf %lf %lf %lf",cep,&x,&y,&w,&h);
             qua=criaQuadra();

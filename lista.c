@@ -8,7 +8,7 @@
 #include"hidrante.h"
 #include"radioBase.h"
  
-#define tam_lista 10000
+
 
 typedef struct{
     char tipo;
