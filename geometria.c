@@ -1,6 +1,7 @@
 #include<math.h>
-#include"lista.h"
+#include<stdio.h>
 #include"figuras.h"
+
 
 
 
@@ -55,10 +56,10 @@ int sobreposicao(ListaFiguras *list,int j,int k, FILE *arq3){
     if(tipo1=='c'&&tipo2=='c'){
         cir1=getCirculo(list,j);
         cir2=getCirculo(list,k);
-        cx1=getCriculoX(cir1);
-        cy1=getCriculoY(cir1);
-        cx2=getCriculoX(cir2);
-        cy2=getCriculoY(cir2);
+        cx1=getCirculoX(cir1);
+        cy1=getCirculoY(cir1);
+        cx2=getCirculoX(cir2);
+        cy2=getCirculoY(cir2);
         r1=getCirculoR(cir1);
         r2=getCirculoR(cir2);
         //calcula a distancia entre os rcentros
@@ -79,8 +80,8 @@ int sobreposicao(ListaFiguras *list,int j,int k, FILE *arq3){
     //verifica se as formas sao um retangulo e um circulo
     }else if(tipo1=='r'&& tipo2=='c'){
         cir1=getCirculo(list,j);
-        cx1=getCriculoX(cir1);
-        cy1=getCriculoY(cir1);
+        cx1=getCirculoX(cir1);
+        cy1=getCirculoY(cir1);
         r1=getCirculoR(cir1);
 
         re1=getRetangulo(list,k);
@@ -97,8 +98,8 @@ int sobreposicao(ListaFiguras *list,int j,int k, FILE *arq3){
     }else if(tipo1=='c'&& tipo2=='r'){
 
           cir1=getCirculo(list,k);
-        cx1=getCriculoX(cir1);
-        cy1=getCriculoY(cir1);
+        cx1=getCirculoX(cir1);
+        cy1=getCirculoY(cir1);
         r1=getCirculoR(cir1);
 
         re1=getRetangulo(list,j);

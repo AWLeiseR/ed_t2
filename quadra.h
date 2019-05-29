@@ -21,4 +21,13 @@ char* getQuadraCfill(Quadra *qua);
 
 char* getQuadraCstrk(Quadra *qua);
 
+void setQuadraX(Quadra *qua, double pX);
+
+void setQuadraY(Quadra *qua, double pY);
+
+void setQuadraCfill(Quadra *qua, char pCfill[]);
+
+void setQuadraCstrk(Quadra *qua, char pCstrk[]);
+
+
 #endif

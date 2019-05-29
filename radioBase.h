@@ -17,4 +17,12 @@ char* getRadioId(Radio *radio);
 char* getRadioCfill(Radio *radio);
 
 char* getRadioCstrk(Radio *radio);
+
+void setRadioX(Radio *ra, double pX);
+
+void setRadioY(Radio *ra, double pY);
+
+void setRadioCfill(Radio *ra, char pCfill[]);
+
+void setRadioCstrk(Radio *ra, char pCstrk[]);
 #endif

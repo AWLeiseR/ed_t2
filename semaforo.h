@@ -19,5 +19,11 @@ char* getSeamforoCfill(Semaforo *se);
 
 char* getSeamforoCstrk(Semaforo *se);
 
+void setSemaforoX(Semaforo *se, double pX);
 
+void setSemaforoY(Semaforo *se, double pY);
+
+void setSemaforoCfill(Semaforo *se, char pCfill[]);
+
+void setSemaforoCstrk(Semaforo *se, char pCstrk[]);
 #endif

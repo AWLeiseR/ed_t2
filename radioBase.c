@@ -2,7 +2,7 @@
 #include<string.h>
 #include <stdio.h>
 typedef struct{
-    char id[10];
+    char id[30];
     double x;
     double y;
     double sw;
@@ -48,4 +48,20 @@ char* getRadioCfill(Radio *radio){
 
 char* getRadioCstrk(Radio *radio){
     return radio->cstrk;
+}
+
+void setSemaforoX(Semaforo *se, double pX){
+    se->x=pX;
+}
+
+void setSemaforoY(Semaforo *se, double pY){
+    se->y=pY;
+}
+
+void setSemaforoCfill(Semaforo *se, char pCfill[]){
+    se->cfill=pCfill;
+}
+
+void setSemaforoCstrk(Semaforo *se, char pCstrk[]){
+    se->cstrk=pCstrk;
 }

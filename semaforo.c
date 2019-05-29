@@ -50,3 +50,19 @@ char* getSeamforoCfill(Semaforo *se){
 char* getSeamforoCstrk(Semaforo *se){
     return se->cstrk;
 }
+
+void setSemaforoX(Semaforo *se, double pX){
+    se->x=pX;
+}
+
+void setSemaforoY(Semaforo *se, double pY){
+    se->y=pY;
+}
+
+void setSemaforoCfill(Semaforo *se, char pCfill[]){
+    se->cfill=pCfill;
+}
+
+void setSemaforoCstrk(Semaforo *se, char pCstrk[]){
+    se->cstrk=pCstrk;
+}

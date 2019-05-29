@@ -52,3 +52,19 @@ char* getHidCfill(Hidrante *hid){
 char* getHidCstrk(Hidrante *hid){
     return hid->cstrk;
 }
+
+void setHidX(Hidrante *hid, double pX){
+    hid->x=pX;
+}
+
+void setHidY(Hidrante *hid, double pY){
+    hid->y=pY;
+}
+
+void setHidCfill(Hidrante *hid, char pCfill[]){
+    hid->cfill=pCfill;
+}
+
+void setHidCstrk(Hidrante *hid, char pCstrk[]){
+    hid->cstrk=pCstrk;
+}

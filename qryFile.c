@@ -7,6 +7,7 @@
 #include"semaforo.h"
 #include"hidrante.h"
 #include"svgFile.h"
+#include "geometria.h"
 
 void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry[],ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listRad,ListaFiguras *listHid,ListaFiguras *listSem){
     Quadra *qua;
@@ -34,8 +35,10 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
     //string para cep, metricas
     char comando[3];
     char tipo1,tipo2;
-    char id[10];
+    char tipo[15];
+    char id[30];
     char cstrk[20];
+    char cep[30];
     //ponteiro para pegar o sufixo de bb
     char *sufixo;
     //ponteiro para pegar cor usada em bb
@@ -50,6 +53,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
     int res;
     //recebe os valores 1 ou 0, 1 para dsobreposiçao da forma e 0 para nao sobreposição
     int sobre;
+    int prox;
     //double que recebe coordenadas dos comandos do qry
     double x;
     double y;
@@ -146,7 +150,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 imprimiLinha(x,y,w1+cx1,h1+cy1,arq3);
             }
             //testa se a forma na posição j é um circulo
-            else if(forma[j].tipo == 'c'){
+            else if(tipo1 == 'c'){
                 cir1=getCirculo(listFig,j);
                  cx1=getCirculoX(cir1);
                 cy1=getCirculoY(cir1);
@@ -170,14 +174,17 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
             tipo2=getRipo(listFig,k);
             //testa se a forma j e a forma k sao circulos
            if(tipo1=='c' && tipo2=='c'){
+
                 cir1=getCirculo(listFig,j);
                 cx1=getCirculoX(cir1);
                 cy1=getCirculoY(cir1);
                 r1=getCirculoR(cir1);
+
                 cir2=getCirculo(listFig,k);
                 cx2=getCirculoX(cir2);
                 cy2=getCirculoY(cir2);
                 r2=getCirculoR(cir2);
+
                 //chama a funçao distancia que calcula a distancia entre dois pontos e armazena o resultado em dis
                 dis=distancia(cx1,cy1,cx2,cy2);
                 //chama a função que cria uma linha entre o centro de massa dos dois circulos
@@ -191,7 +198,8 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
 
             //testa se a forma j e a forma k sao um retangulo e um circulo
             }else if(tipo1=='r'&&tipo2=='c'){
-                 re1=getRetangulo(listFig,j);
+
+                re1=getRetangulo(listFig,j);
                 cx1=getretanguloX(re1);
                 cy1=getRetanguloY(re1);
                 w1=getRetanguloW(re1);
@@ -201,6 +209,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 cx2=getCirculoX(cir1);
                 cy2=getCirculoY(cir1);
                 r2=getCirculoR(cir1);
+
                 //chama a funçao distancia que calcula a distancia entre dois pontos e armazena o resultado em dis
                 dis=distancia(cx1+(w1/2),cy1+(h1/2),cx2,cy2);
                 //chama a função que cria uma linha entre o centro de massa do retangulo e do circulo
@@ -214,7 +223,8 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 
             //testa se a forma j e a forma k sao dois retangulos
             }else if(tipo1=='r' && tipo2=='r'){
-                 re1=getRetangulo(listFig,j);
+
+                re1=getRetangulo(listFig,j);
                 cx1=getretanguloX(re1);
                 cy1=getRetanguloY(re1);
                 w1=getRetanguloW(re1);
@@ -225,6 +235,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 cy2=getRetanguloY(re2);
                 w2=getRetanguloW(re2);
                 h2=getRetanguloH(re2);
+
                 //chama a funçao distancia que calcula a distancia entre dois pontos e armazena o resultado em dis
                 dis=distancia(cx1+(w1/2),cy1+(h1/2),cx2+(w2/2),cy2+(h2/2));
                 //chama a função que cria uma linha entre o centro de massa dos dois retangulos
@@ -238,6 +249,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 
             //testa se a forma j e a forma k sao um circulo e um retangulo
             }else if(tipo1=='c' && tipo2=='r'){
+
                 cir1=getCirculo(listFig,j);
                 cx1=getCirculoX(cir1);
                 cy1=getCirculoY(cir1);
@@ -248,6 +260,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 cy2=getRetanguloY(re2);
                 w2=getRetanguloW(re2);
                 h2=getRetanguloH(re2);
+
                 //chama a funçao distancia que calcula a distancia entre dois pontos e armazena o resultado em dis
                 dis=distancia(cx1,cy1,cx2+(w2/2),cy2+(h2/2));
                 //chama a função que cria uma linha entre o centro de massa do circulo e do retangulo
@@ -257,8 +270,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 //calcula a coordenada x do ponto medio
                 mx=(cx1+cx2+(w2/2))/2;
                 //calcula a coordenada y do ponto medio
-                my=(cy1+cy2+(h2/2))/2;
-                
+                my=(cy1+cy2+(h2/2))/2;    
             }
             //escreve a distancia entre os dois pontos no arquivo svg no ponto meido
             imprimiTexto(mx,my,string,arq3);
@@ -266,28 +278,12 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
             fprintf(arq2,"%s %d %d \n%lf\n",letra,j,k,dis);
         }else if(strcmp("dq",letra)==0){
             fscanf(arq,"%s %s %lf",comando, id,dis);
-            fprintf(arq2,"%s%s %s %lf",comando, id,dis,letra);
-
-        }else if(strcmp("del",letra)==0){
-            scanf(arq,"%s",comando);
-            fprintf(arq2,"%s",letra);
-            
-        }else if(strcmp("cdq",letra)==0){
-            scanf(arq,"%lf %lf %lf %s",x,y,r,cstrk);
-            fprintf(arq2,"%s%lf %lf %lf %s",x,y,r,cstrk,letra);
-        }else if(strcmp("crd?",letra)==0){
-            scanf(arq,"%s",comando);
-            res=buscaChar(listQua,comando);
-            if(res!=-1){
-                qua=getQuadra(listQua,res);
-                x=getQuadraX(qua);
-                y=getQuadraY(qua);  
-            }else{
-                res=buscaChar(listHid,comando);
+            fprintf(arq2,"%s s%s %s %lf",comando, id,dis,letra);
+            res=buscaChar(listHid,comando);
                 if(res!=-1){
                     hid=getHidrante(listHid,res);
-                    x=getHidX(qua);
-                    y=getHidY(qua);
+                    x=getHidX(hid);
+                    y=getHidY(hid);
                 }else{
                     res=buscaChar(listRad,comando);
                     if(res!=-1){
@@ -306,10 +302,142 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                     
 
                 }
+                prox=getFirst(listQua);
+            do{
+                qua=getQuadra(listQua,prox);
+                x1=getQuadraX(qua);
+                y1=getQuadraY(qua);
+                w1=getQuadraW(qua);
+                h1=getQuadraH(qua);
+                if(pontoInternoCirculo(x1,y1,x,y,r)){
+                    if(pontoInternoCirculo(x1+w1,y1+h1,x,y,r)){
+                        if(pontoInternoCirculo(x1+w1,y1,x,y,r)){
+                            if(pontoInternoCirculo(x1,y1+h1,x,y,r)){
+                                delet(qua,prox);
+                                cep=getQuadraCep(qua);
+                                fprintf(arq2"%s %lf %lf",cep,x1,y1);
+                            }else{
+                                continue;
+                            }
+                        }else{
+                            continue;
+                        } 
+                    }else{
+                        continue;
+                    }
+                       
+                }else{
+                    continue;
+                    }
+            }while(prox!=-1);
+
+        }else if(strcmp("del",letra)==0){
+            scanf(arq,"%s",comando);
+            fprintf(arq2,"%s\n%s",letra,comando);
+            res=buscaChar(listQua,comando);
+            if(res!=-1){
+                qua=getQuadra(listaQua,res);
+                x=getQuadraX(qua);
+                y=getQuadraY(qua);
+                delet(listaQua,res);
+            }else{
+                res=buscaChar(listHid,comando);
+                if(res!=-1){
+                    hid=getHidrante(listHid,res);
+                    x=getHidX(hid);
+                    y=getHidY(hid);
+                    delet(listaHid,res);
+                }else{
+                    res=buscaChar(listRad,comando);
+                    if(res!=-1){
+                        ra=getRadio(listRad,res);
+                        x=getRadioX(ra);
+                        y=getRadioY(ra);
+                        delet(listaRad,res);
+                    }else{
+                        res=buscaChar(listSem,comando);
+                        if(res!=-1){
+                            se=getSemaforo(listSem,res);
+                            x=getSemaforoX(se);
+                            y=getSemaforoY(se);
+                            delet(listaSem,res);
+                        }
+                    }
+                }
+            }
+            sprintf(arq2," %lf %lf",x,y);
+            
+        }else if(strcmp("cbq",letra)==0){
+            scanf(arq,"%lf %lf %lf %s",x,y,r,cstrk);
+            fprintf(arq2,"%s%lf %lf %lf %s\n",x,y,r,cstrk,letra);
+            prox=getFirst(listQua);
+            do{
+                qua=getQuadra(listQua,prox);
+                x1=getQuadraX(qua);
+                y1=getQuadraY(qua);
+                w1=getQuadraW(qua);
+                h1=getQuadraH(qua);
+                if(pontoInternoCirculo(x1,y1,x,y,r)){
+                    if(pontoInternoCirculo(x1+w1,y1+h1,x,y,r)){
+                        if(pontoInternoCirculo(x1+w1,y1,x,y,r)){
+                            if(pontoInternoCirculo(x1,y1+h1,x,y,r)){
+                                setQuadraCstrk(qua,cstrk);
+                                cep=getQuadraCep(qua);
+                                fprintf(arq2"%s ",cep);
+                            }else{
+                                continue;
+                            }
+                        }else{
+                            continue;
+                        } 
+                    }else{
+                        continue;
+                    }
+                       
+                }else{
+                    continue;
+                    }
+            }while(prox!=-1);
+            
+        }else if(strcmp("crd?",letra)==0){
+            scanf(arq,"%s",comando);
+            res=buscaChar(listQua,comando);
+            if(res!=-1){
+                qua=getQuadra(listQua,res);
+                x=getQuadraX(qua);
+                y=getQuadraY(qua); 
+                strcpy(tipo,"Quadra"); 
+            }else{
+                res=buscaChar(listHid,comando);
+                if(res!=-1){
+                    hid=getHidrante(listHid,res);
+                    x=getHidX(hid);
+                    y=getHidY(hid);
+                    strcpy(tipo,"Hidrante");
+                }else{
+                    res=buscaChar(listRad,comando);
+                    if(res!=-1){
+                        ra=getRadio(listRad,res);
+                        x=getRadioX(ra);
+                        y=getRadioY(ra);
+                        strcpy(tipo,"Torre Radio");
+                    }else{
+                        res=buscaChar(listSem,comando);
+                        if(res!=-1){
+                            se=getSemaforo(listSem,res);
+                            x=getSemaforoX(se);
+                            y=getSemaforoY(se);
+                            strcpy(tipo,"Semaforo");
+                        }
+
+                    }
+                    
+
+                }
                 
             }
             
-            fprintf(arq2,"%s %s\n %lf %lf\n",letra,comando,x,y);
+            fprintf(arq2,"\n%s %s\n %s %lf %lf\n",letra,comando,tipo,x,y);
         }else if(strcmp("trns",letra)==0){
             scanf(arq,"%lf %lf %lf %lf %lf %lf",x,y,w,h,dx,dy);
             fprintf(arq2,"%s",letra);

@@ -19,4 +19,12 @@ char* getHidId(Hidrante *hid);
 char* getHidCfill(Hidrante *hid);
 
 char* getHidCstrk(Hidrante *hid);
+
+void setHidX(Hidrante *hid, double pX);
+
+void setHidY(Hidrante *hid, double pY);
+
+void setHidCfill(Hidrante *hid, char pCfill[]);
+
+void setHidCstrk(Hidrante *hid, char pCstrk[]);
 #endif

@@ -1,6 +1,6 @@
 #ifndef __GEOMETRIA_H
 #define __GEOMETRIA_H
-
+#include"lista.h"
 //calcula/retorna distancia entre dois pontos
 double distancia (double x1, double y1, double x2, double y2);
 //verifica se as formas estao sobre postas

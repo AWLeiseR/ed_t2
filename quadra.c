@@ -63,3 +63,19 @@ char* getQuadraCfill(Quadra *qua){
 char* getQuadraCstrk(Quadra *qua){
     return qua->cstrk;
 }
+
+void setQuadraX(Quadra *qua, double pX){
+    qua->x=pX;
+}
+
+void setQuadraY(Quadra *qua, double pY){
+    qua->y=pY;
+}
+
+void setQuadraCfill(Quadra *qua, char pCfill[]){
+    qua->cfill=pCfill;
+}
+
+void setQuadraCstrk(Quadra *qua, char pCstrk[]){
+    qua->cstrk=pCstrk;
+}
