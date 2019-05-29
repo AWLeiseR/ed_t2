@@ -3,6 +3,7 @@
 #include <string.h>
 #include "lista.h"
 #include "geofile.h"
+#include "qryFile.h"
 #include "figuras.h"
 #include "quadra.h"
 #include "semaforo.h"
@@ -183,13 +184,17 @@ int main(int argc, char *argv[]){
     sprintf(saidasvg,"%s%s",nomegeo,nomesvg);
     leituraGeo(saidasvg,pathgeo,listFig,listQua,listSem,listHid,listRad);
     
-    
+    leituraQry(pathqry ,dirsaida,sufixogeo,sufixoqry,listFig,listQua,listRad,listHid,listSem);
    // criaSvg(listFig,listQua,listRad,listHid,listSem,saidasvg);
     
     printf("\n%s  %s",nomegeo,sufixogeo);
     printf("\n%s  %s",nomeqry,sufixoqry);
     
- 
+    freeList(listFig);
+    freeList(listHid);
+    freeList(listQua);
+    freeList(listRad);
+    freeList(listSem);
     free(nomegeo);
     free(nomeqry);
     free(dirbase);

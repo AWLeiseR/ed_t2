@@ -13,7 +13,7 @@ double getSemaforoX(Semaforo *se);
 
 double getSemaforoY(Semaforo *se);
 
-char* getQuadraId(Semaforo *se);
+char* getSemaforoId(Semaforo *se);
 
 char* getSeamforoCfill(Semaforo *se);
 

@@ -74,7 +74,7 @@ int lenght(ListaFiguras* list){
 int insert(ListaFiguras* list, Forma* forma,char pTipo){
     Forma* nItem;
     nItem=forma;
-    nItem.tipo=pTipo;
+    nItem->tipo=pTipo;
     int n;
     int n1;
     int antLivre;
@@ -179,25 +179,33 @@ int buscaChar(ListaFiguras* list, char id[],char pTipo){
     int i=-1;
     int tam;
     int prox=list->primeiro;
+    Quadra *qua;
+    Radio *ra;
+    Semaforo *se;
+    Hidrante *hid;
    do{
         switch(pTipo){
             case'q':
-                if(strcmp(getQuadraCep(list->info[prox].forma),id)==0){
+                qua=getQuadra(list,prox);
+                if(strcmp(getQuadraCep(qua),id)==0){
                     i=prox;
                 }
             break;
             case'r':
-            if(strcmp(getRadioId(list->info[prox].forma),id)==0){
+            ra=getRadio(list,prox);
+            if(strcmp(getRadioId(ra),id)==0){
                     i=prox;
                 }
             break;
             case's':
-            if(strcmp(getSemaforoId(list->info[prox].forma),id)==0){
+            se=getSemaforo(list,prox);
+            if(strcmp(getSemaforoId(se),id)==0){
                     i=prox;
                 }
             break;
-            case'r':
-            if(strcmp(getHidId(list->info[prox].forma),id)==0){
+            case'h':
+            hid=getHidrante(list,prox);
+            if(strcmp(getHidId(hid),id)==0){
                     i=prox;
                 }
             break;
