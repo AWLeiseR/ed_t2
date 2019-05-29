@@ -15,7 +15,7 @@ double getSemaforoY(Semaforo *se);
 
 char* getQuadraId(Semaforo *se);
 
-char* getSeamforoCfill(Semaforo *se)
+char* getSeamforoCfill(Semaforo *se);
 
 char* getSeamforoCstrk(Semaforo *se);
 

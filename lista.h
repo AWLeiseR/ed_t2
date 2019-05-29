@@ -38,8 +38,25 @@ void freeList(ListaFiguras *list);
 void imprimir(ListaFiguras *list);
 
 //busca
-int buscaChar(ListaFiguras* list, char id[]);
+int buscaChar(ListaFiguras* list, char id[],char pTipo);
 
+int getFirst(ListaFiguras *list);
+
+int getProx(ListaFiguras *list, int i);
+
+char getTipo(ListaFiguras *list, int i);
+
+Circulo* getCirculo(ListaFiguras *list,int i);
+
+Retangulo* getRetangulo(ListaFiguras *list,int i);
+
+Radio* getRadio(ListaFiguras *list,int i);
+
+Hidrante* getHidrante(ListaFiguras *list,int i);
+
+Quadra* getQuadra(ListaFiguras *list,int i);
+
+Semaforo* getSemaforo(ListaFiguras *list,int i);
 
 #endif
 

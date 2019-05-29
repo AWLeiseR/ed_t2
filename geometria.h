@@ -4,7 +4,7 @@
 //calcula/retorna distancia entre dois pontos
 double distancia (double x1, double y1, double x2, double y2);
 //verifica se as formas estao sobre postas
-int sobreposicao(Formas forma1,Formas forma2,FILE *arq3);
+int sobreposicao(ListaFiguras *list,int j,int k, FILE *arq3);
 //calcula o maior numero ente n1 e n2
 double max(double n1,double n2);
 //calcula o menor numero ente n1 e n2

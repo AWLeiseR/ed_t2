@@ -49,16 +49,17 @@ void imprimiTexto(double x, double y, char texto[], FILE *arq){
     fprintf(arq,"<text x=\"%lf\" y=\"%lf\" fill=\"black\">%s</text>",x,y,texto);
 }
 
-void imprimiSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]){
+void imprimiSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],char sufixogeo[]){
     FILE *svg;
+    Circulo *cir;
+    Retangulo *rec;
     char *saida;
     int j;
-    int prox=list->primeiro;
+    int prox=getFirst(list);
     double x,y,w,h,r;
     char tipo;
     char *borda,*dentro;
-    if(nx==0)
-        nx=1000;
+   
     saida=(char *) malloc((strlen(dirsaida)+strlen(sufixo)+strlen(sufixogeo)+7)*sizeof(char));
 
     sprintf(saida,"%s/%s-%s.svg",dirsaida,sufixogeo,sufixo);
@@ -72,28 +73,31 @@ void imprimiSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],int
     fprintf(svg,"<svg>");
 
     while(prox!=-1){
-        if(list->info[prox]->forma.tipo=='c'){
-            x=getCirculoX(list->info[prox]->forma.circulo);
-            y=getCirculoY(list->info[prox]->forma.circulo);
-            r=getCirculoR(list->info[prox]->forma.circulo);
-        }else{
-            x=getRetanguloX(list->info[prox]->forma.retangulo);
-            y=getRetanguloY(list->info[prox]->forma.retangulo);
-            h=getRetanguloH(list->info[prox]->forma.retangulo);                    
-            w=getRetanguloW(list->info[prox]->forma.retangulo);
-        }
-        switch ('c'){
+        switch (getTipo(list,prox)){
             case 'c':
+                cir=getCirculo(list,prox);
+                x=getCirculoX(cir);
+                y=getCirculoY(cir);
+                r=getCirculoR(cir);
+                borda=getCirculoCstrk(cir);
+                dentro=getCirculoCfill(cir);
                 fprintf(svg,"<circle cx=\"%lf\" cy=\"%lf\" r=\"%lf\" stroke=\"%s\" stroke-width=\"1\" fill=\"%s\" />",x,y,r,borda,dentro);
                 fprintf(svg,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\"  fill=\"none\" stroke=\"%s\" stroke-width:\"1\" />",x-r,y-r,r*2,r*2,cor);
                 break;
 
             case 'r':
+                rec=getRetangulo(list,prox);
+                x=getRetanguloX(rec);
+                y=getRetanguloY(rec);
+                h=getRetanguloH(rec);                    
+                w=getRetanguloW(rec);
+                borda=getRetanguloCstrk(rec);
+                dentro=getRetanguloCfill(rec);
                 fprintf(svg,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"%s\" stroke=\"%s\"  stroke-width:\"2\" />",x,y,w,h,borda,dentro);
                 fprintf(svg,"<ellipse cx=\"%lf\" cy=\"%lf\" rx=\"%lf\" ry=\"%lf\" fill=\"none\" stroke=\"%s\" stroke-width\"2\" />",x+(w/2),y+(h/2),w/2,h/2,cor);
                 break;
                 }
-        prox=list->info[prox].prox;        
+        prox=getProx(list,prox);        
     }
     fprintf(svg,"</svg>");
 

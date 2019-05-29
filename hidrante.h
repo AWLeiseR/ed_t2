@@ -16,7 +16,7 @@ double getHidY(Hidrante *hid);
 
 char* getHidId(Hidrante *hid);
 
-char* getHidCfill(hid *hid);
+char* getHidCfill(Hidrante *hid);
 
-char* getHidCstrk(Radio *hid);
+char* getHidCstrk(Hidrante *hid);
 #endif

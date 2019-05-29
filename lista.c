@@ -16,7 +16,7 @@ typedef struct{
         Retangulo *retangulo;
         Circulo *circulo;
         Quadra *quadra;
-        Hidrante *hidrantes;
+        Hidrante *hidrante;
         Semaforo *semaforo;
         Radio *radio;
     };
@@ -28,7 +28,7 @@ typedef struct{
     int prox;
 }Item;
 
-typedef struct{
+typedef struct lista{
     Item* info;
     int primeiro;
     int livre;
@@ -71,9 +71,10 @@ int lenght(ListaFiguras* list){
 }
    
 
-int insert(ListaFiguras* list, Forma* info){
+int insert(ListaFiguras* list, Forma* forma,char pTipo){
     Forma* nItem;
-    nItem=info;
+    nItem=forma;
+    nItem.tipo=pTipo;
     int n;
     int n1;
     int antLivre;
@@ -135,17 +136,74 @@ void freeList(ListaFiguras *list){
     free(list->info);
     free(list);
 }
-//arrumar
-int buscaChar(ListaFiguras* list, char id[]){
-    int i;
-    int tam;
-    
-    for(i=0;i<tam;i++){
-        //strcmp(cep,list->info[i].forma->quadra);
-        if(i){
-            break;
-        }
-    }
-    return i;
+
+
+int getFirst(ListaFiguras *list){
+    return list->primeiro;
 }
 
+int getProx(ListaFiguras *list,int i){
+    return list->info[i].prox;
+}
+
+char getTipo(ListaFiguras *list, int i){
+    return list->info[i].forma->tipo;
+}
+
+Circulo* getCirculo(ListaFiguras *list,int i){
+    return list->info[i].forma->circulo;
+}
+
+Retangulo* getRetangulo(ListaFiguras *list,int i){
+    return list->info[i].forma->retangulo;
+}
+
+Radio* getRadio(ListaFiguras *list,int i){
+    return list->info[i].forma->radio;
+}
+
+Hidrante* getHidrante(ListaFiguras *list,int i){
+    return list->info[i].forma->hidrante;
+}
+
+Quadra* getQuadra(ListaFiguras *list,int i){
+    return list->info[i].forma->quadra;
+}
+
+Semaforo* getSemaforo(ListaFiguras *list,int i){
+    return list->info[i].forma->semaforo;
+}
+
+//arrumar
+int buscaChar(ListaFiguras* list, char id[],char pTipo){
+    int i=-1;
+    int tam;
+    int prox=list->primeiro;
+   do{
+        switch(pTipo){
+            case'q':
+                if(strcmp(getQuadraCep(list->info[prox].forma),id)==0){
+                    i=prox;
+                }
+            break;
+            case'r':
+            if(strcmp(getRadioId(list->info[prox].forma),id)==0){
+                    i=prox;
+                }
+            break;
+            case's':
+            if(strcmp(getSemaforoId(list->info[prox].forma),id)==0){
+                    i=prox;
+                }
+            break;
+            case'r':
+            if(strcmp(getHidId(list->info[prox].forma),id)==0){
+                    i=prox;
+                }
+            break;
+
+        }
+        prox=list->info[prox].prox;
+    } while(list->info[prox].prox!=-1);
+    return i;
+}

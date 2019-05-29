@@ -1,8 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"lista.h"
+#include"figuras.h"
+#include"quadra.h"
+#include"semaforo.h"
+#include"hidrante.h"
 
-void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry[]){
+void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry[],ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listRad,ListaFiguras *listHid,ListaFiguras *listSem){
+    Quadra *qua;
+    Semaforo *se;
+    Radio *ra;
+    Hidrante *hid;
     //arquivo qry
     FILE *arq;
     //arquivo txt
@@ -52,7 +61,6 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
     
     //abre o arq qry só pra leitura
     arq=fopen(pathqry,"r");
-
     //testa se esta null
     if(arq==NULL){
         printf("\nNAO ENCONTRADO ARQUIVO %s\n",pathqry);
@@ -64,10 +72,10 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
     saida=(char *) malloc(strlen(pathsaida)+strlen(nometxt)+strlen(sufixogeo)+strlen(sufixoqry)*sizeof(char)+2);
     //escreve dentro do vetor de char adcionando o /
     sprintf(saida,"%s/%s%s%s",pathsaida,sufixogeo,sufixoqry,nometxt);
+
     //abre o e cria o arquivo txt de saida
     arq2=fopen(saida,"w");
     //testa se o ponteiro é null
-
      if(arq2==NULL){
         printf("\nNAO ENCONTRADO ARQUIVO %s\n",saida);
         perror("");
@@ -101,7 +109,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
             //copia o que esta em palavra para cor
             strcpy(cor,palavra);
             //chama função que cria um svg separado, enviando a struct forma, pathsaida, sufixo para o nome do arquivo e cor que sera usada nas boradas das formas
-            criaSvgbb(forma,pathsaida,sufixo,cor,nx,sufixogeo);
+            criaSvgbb(listFigs,pathsaida,sufixo,cor,sufixogeo);
             free(cor);
             free(sufixo);
         //o?:Sobreposição de formas FAZER!!
@@ -109,7 +117,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
         }else  if(strcmp("o?",letra)==0){
             //pega os dois inteiros (identificadores) seguintes e armazena em 'j' e 'k' respectivamente
             fscanf(arq," %d %d",&j,&k);
-            sobre=sobreposicao(forma[j],forma[k],arq3);
+            sobre=sobreposicao(listFig,j,k,arq3);
             //escreve no arquivo txt o enuciado
             fprintf(arq2,"%s %d %d\n%s\n",letra,j,k, sobre? "SIM":"NAO");
         //i?:Ponto dentro ou fora formas
@@ -201,19 +209,53 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
             fprintf(arq2,"%s %d %d \n%lf\n",letra,j,k,dis);
         }else if(strcmp("dq",letra)==0){
             fscanf(arq,"%s %s %lf",comando, id,dis);
+            fprintf(arq2,"%s%s %s %lf",comando, id,dis,letra);
 
         }else if(strcmp("del",letra)==0){
             scanf(arq,"%s",comando);
+            fprintf(arq2,"%s",letra);
             
         }else if(strcmp("cdq",letra)==0){
             scanf(arq,"%lf %lf %lf %s",x,y,r,cstrk);
-            
+            fprintf(arq2,"%s%lf %lf %lf %s",x,y,r,cstrk,letra);
         }else if(strcmp("crd?",letra)==0){
             scanf(arq,"%s",comando);
+            res=buscaChar(listQua,comando);
+            if(res!=-1){
+                qua=getQuadra(listQua,res);
+                x=getQuadraX(qua);
+                y=getQuadraY(qua);  
+            }else{
+                res=buscaChar(listHid,comando);
+                if(res!=-1){
+                    hid=getHidrante(listHid,res);
+                    x=getHidX(qua);
+                    y=getHidY(qua);
+                }else{
+                    res=buscaChar(listRad,comando);
+                    if(res!=-1){
+                        ra=getRadio(listRad,res);
+                        x=getRadioX(ra);
+                        y=getRadioY(ra);
+                    }else{
+                        res=buscaChar(listSem,comando);
+                        if(res!=-1){
+                            se=getSemaforo(listSem,res);
+                            x=getSemaforoX(se);
+                            y=getSemaforoY(se);
+                        }
+
+                    }
+                    
+
+                }
+                
+            }
             
+            fprintf(arq2,"%s %s\n %lf %lf\n",letra,comando,x,y);
         }else if(strcmp("trns",letra)==0){
             scanf(arq,"%lf %lf %lf %lf %lf %lf",x,y,w,h,dx,dy);
-            
+            fprintf(arq2,"%s",letra);
         }
         //pega a proxima letra (requisição)                
        fscanf(arq,"%s",letra);

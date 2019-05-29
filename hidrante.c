@@ -45,10 +45,10 @@ double getHidY(Hidrante *hid){
 char* getHidId(Hidrante *hid){
     return hid->id;
 }
-char* getHidCfill(hid *hid){
+char* getHidCfill(Hidrante *hid){
     return hid->cfill;
 }
 
-char* getHidCstrk(Radio *hid){
+char* getHidCstrk(Hidrante *hid){
     return hid->cstrk;
 }
