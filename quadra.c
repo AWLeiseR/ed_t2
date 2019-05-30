@@ -1,8 +1,9 @@
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
-typedef struct{
+typedef struct quadra{
     char cep[20];
     double x;
     double y;
@@ -19,7 +20,7 @@ Quadra* criaQuadra(){
 }
 
 void defineQuadra(Quadra *quadra, char pCep[],double pX, double pY, double pW, double pH,char pCfill[], char pCstrk[],double pSw){
-    
+   
     strcpy(quadra->cep,pCep);
     quadra->x=pX;
     quadra->y=pY;
@@ -28,6 +29,7 @@ void defineQuadra(Quadra *quadra, char pCep[],double pX, double pY, double pW, d
     strcpy(quadra->cfill,pCfill);
     strcpy(quadra->cstrk,pCstrk);
     quadra->sw=pSw;
+     
 }
 
 
@@ -56,6 +58,14 @@ double getQuadraY(Quadra *qua){
     return qua->y;
 }
 
+double getQuadraW(Quadra *qua){
+    return qua->w;
+}
+
+double getQuadraH(Quadra *qua){
+    return qua->h;
+}
+
 char* getQuadraCfill(Quadra *qua){
     return qua->cfill;
 }
@@ -73,9 +83,9 @@ void setQuadraY(Quadra *qua, double pY){
 }
 
 void setQuadraCfill(Quadra *qua, char pCfill[]){
-    qua->cfill=pCfill;
+    strcpy(qua->cfill,pCfill);
 }
 
 void setQuadraCstrk(Quadra *qua, char pCstrk[]){
-    qua->cstrk=pCstrk;
+    strcpy(qua->cstrk,pCstrk);
 }

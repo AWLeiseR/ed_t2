@@ -15,6 +15,10 @@ double getQuadraX(Quadra *qua);
 
 double getQuadraY(Quadra *qua);
 
+double getQuadraH(Quadra *qua);
+
+double getQuadraW(Quadra *qua);
+
 char* getQuadraCep(Quadra *qua);
 
 char* getQuadraCfill(Quadra *qua);

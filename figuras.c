@@ -58,18 +58,7 @@ void defineRetangulo(Retangulo *rec, double i, double pX, double pY, double pH, 
     //rec->w=10.0;
 }
 
-int pontoInternoCirculo(double px, double py, double cx, double cy, double r){
-    double d = distancia (px,py,cx,cy);
-    int res = d <= r? 1:0;
-    return res;
-}
 
-int pontoInteriorRetangulo(double px, double py, double cx1, double cy1, double cx2, double cy2){
-    if(px>=cx1 && px<=cx2 && py>=cy1 && py<=cy2)
-        return 1;
-    else
-        return 0;
-} 
 
 void deslocaCirculo(double dx, double dy){
   double cx,cy;

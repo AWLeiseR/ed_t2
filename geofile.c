@@ -82,8 +82,14 @@ void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFigura
         
                 //pega o numero do nx  
                 fscanf(arq,"%d %d %d %d %d",&padrao,&numQua,&numHid,&numSem,&numRa);
-                //printf("%d %d %d %d %d",padrao,numQua,numHid,numSem,numRa);
-              
+                //printf("\n%d %d %d %d %d\n",padrao,numQua,numHid,numSem,numRa);
+                //listFig=createLista(padrao);
+                //printf("\n%d\n",listFig);
+                //listQua=createLista(numQua);
+                //listSem=createLista(numHid);
+                //listHid=createLista(numSem);
+                
+                //listRad=createLista(numRa);
                 
         }else if(strcmp("t",comando)==0){//caso for 't',  texto
             
@@ -98,6 +104,7 @@ void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFigura
             qua=criaQuadra();
             defineQuadra(qua,cep,x,y,w,h,cfill,cstrk,sw);
             insert(listQua,qua);
+            
             imprimiRetangulo(svg,x,y,h,w,cstrk,cfill);
             //printf("\nquadra\n");
 
@@ -145,7 +152,7 @@ void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFigura
         }
             //testa se esta no final do arquivo
             if (feof(arq)){
-                printf("\nFIM\n");
+                //printf("\nFIM\n");
                 break; 
             }                    
         }
@@ -156,7 +163,7 @@ void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFigura
     //fecha o arquivo
     fclose(arq);
     fclose(svg);
-    printf("FIM LEITURA GEO\n");
+    //printf("FIM LEITURA GEO\n");
     //reetorna o ponteiro para formas
     //return void;
 //printf("FIM LEITURA GEO\n");

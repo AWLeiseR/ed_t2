@@ -50,18 +50,18 @@ char* getRadioCstrk(Radio *radio){
     return radio->cstrk;
 }
 
-void setSemaforoX(Semaforo *se, double pX){
-    se->x=pX;
+void setRadioX(Radio *radio, double pX){
+    radio->x=pX;
 }
 
-void setSemaforoY(Semaforo *se, double pY){
-    se->y=pY;
+void setRadioY(Radio *radio, double pY){
+    radio->y=pY;
 }
 
-void setSemaforoCfill(Semaforo *se, char pCfill[]){
-    se->cfill=pCfill;
+void setRadioCfill(Radio *radio, char pCfill[]){
+    strcpy(radio->cfill,pCfill);
 }
 
-void setSemaforoCstrk(Semaforo *se, char pCstrk[]){
-    se->cstrk=pCstrk;
+void setRadioCstrk(Radio *radio, char pCstrk[]){
+    strcpy(radio->cstrk,pCstrk);
 }

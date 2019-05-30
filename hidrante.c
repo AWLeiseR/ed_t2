@@ -1,6 +1,7 @@
 #include<string.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 typedef struct{
     char id[10];
@@ -62,9 +63,9 @@ void setHidY(Hidrante *hid, double pY){
 }
 
 void setHidCfill(Hidrante *hid, char pCfill[]){
-    hid->cfill=pCfill;
+    strcpy(hid->cfill,pCfill);
 }
 
 void setHidCstrk(Hidrante *hid, char pCstrk[]){
-    hid->cstrk=pCstrk;
+    strcpy(hid->cstrk,pCstrk);
 }

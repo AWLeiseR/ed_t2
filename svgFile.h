@@ -22,7 +22,7 @@ void imprimiRetangulodash(double x, double y, double w, double h, char stroke[],
 
 void imprimiTexto(double x, double y, char texto[], FILE *arq);
 
-void imprimiSvgbb(ListaFiguras *,char *dirsaida,char sufixo[],char cor[],int nx,char sufixogeo[]);
+void imprimiSvgbb(ListaFiguras *list,char *dirsaida,char sufixo[],char cor[],char sufixogeo[]);
 
 void imprimiSvg(ListaFiguras *listFig,ListaFiguras *listQua,ListaFiguras *listRad,ListaFiguras *listHid,ListaFiguras *listSem,char saida[]);
 

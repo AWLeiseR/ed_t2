@@ -36,6 +36,7 @@ typedef struct lista{
 }ListaFiguras;
 
 ListaFiguras* createLista(int tam_lista){
+    printf("lista criada\n");
     int i=0 ;
     ListaFiguras* aux;
     ListaFiguras* lista= malloc(sizeof(ListaFiguras));
@@ -133,12 +134,13 @@ void delet(ListaFiguras* list, int p){
 }
 
 void freeList(ListaFiguras *list){
-    free(list->info);
-    free(list);
+        free(list->info);
+        free(list);    
 }
 
 
 int getFirst(ListaFiguras *list){
+    printf("%d",list->primeiro);
     return list->primeiro;
 }
 
@@ -166,7 +168,7 @@ Hidrante* getHidrante(ListaFiguras *list,int i){
     return list->info[i].forma->hidrante;
 }
 
-Quadra* getQuadra(ListaFiguras *list,int i){
+Quadra *getQuadra(ListaFiguras *list,int i){
     return list->info[i].forma->quadra;
 }
 
@@ -175,10 +177,11 @@ Semaforo* getSemaforo(ListaFiguras *list,int i){
 }
 
 //arrumar
-int buscaChar(ListaFiguras* list, char id[],char pTipo){
+int buscaChar(ListaFiguras* list, char pId[],char pTipo){
     int i=-1;
     int tam;
     int prox=list->primeiro;
+    char *id;
     Quadra *qua;
     Radio *ra;
     Semaforo *se;
@@ -186,26 +189,31 @@ int buscaChar(ListaFiguras* list, char id[],char pTipo){
    do{
         switch(pTipo){
             case'q':
+            
                 qua=getQuadra(list,prox);
-                if(strcmp(getQuadraCep(qua),id)==0){
+                id=getQuadraCep(qua);
+                if(strcmp(id,pId)==0){
                     i=prox;
                 }
             break;
             case'r':
             ra=getRadio(list,prox);
-            if(strcmp(getRadioId(ra),id)==0){
+            id=getRadioId(ra);
+            if(strcmp(id,pId)==0){
                     i=prox;
                 }
             break;
             case's':
             se=getSemaforo(list,prox);
-            if(strcmp(getSemaforoId(se),id)==0){
+            id=getSemaforoId(se);
+            if(strcmp(id,pId)==0){
                     i=prox;
                 }
             break;
             case'h':
             hid=getHidrante(list,prox);
-            if(strcmp(getHidId(hid),id)==0){
+            id=getHidId(hid);
+            if(strcmp(id,pId)==0){
                     i=prox;
                 }
             break;

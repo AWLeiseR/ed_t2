@@ -60,9 +60,9 @@ void setSemaforoY(Semaforo *se, double pY){
 }
 
 void setSemaforoCfill(Semaforo *se, char pCfill[]){
-    se->cfill=pCfill;
+    strcpy(se->cfill,pCfill);
 }
 
 void setSemaforoCstrk(Semaforo *se, char pCstrk[]){
-    se->cstrk=pCstrk;
+    strcpy(se->cstrk,pCstrk);
 }

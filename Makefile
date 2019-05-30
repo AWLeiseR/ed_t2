@@ -14,10 +14,10 @@ main.o: main.c lista.o lista.h geofile.o geofile.h svgFile.o svgFile.h qryFile.o
 qryFile.o: qryFile.c qryFile.h svgFile.o geometria.o
 	$(CC) -c qryFile.c
 
-geometria.o: geometria.c geometria.h 
+geometria.o: geometria.c geometria.h lista.h
 	$(CC) -c geometria.c
 
-lista.o: lista.c lista.h figuras.o figuras.h quadra.o quadra.h radioBase.o hidrante.o semaforo.o
+lista.o: lista.c lista.h figuras.o figuras.h quadra.o quadra.h radioBase.h hidrante.h semaforo.h
 	$(CC) -c lista.c
 
 figuras.o: figuras.c figuras.h geometria.o geometria.h

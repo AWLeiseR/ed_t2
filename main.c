@@ -64,6 +64,8 @@ char* trataBarra(char path[]){
     return sufixo;  
 }
 
+ 
+
 int main(int argc, char *argv[]){
     //comeca com um pq o argc[0] e o nome do arquivo chamado
     ListaFiguras *listFig;
@@ -71,7 +73,12 @@ int main(int argc, char *argv[]){
     ListaFiguras *listSem;
     ListaFiguras *listHid;
     ListaFiguras *listRad;
-   
+    listFig=createLista(1000);
+    listQua=createLista(1000);
+    listSem=createLista(1000);
+    listHid=createLista(1000);
+    listRad=createLista(1000);
+    Quadra *qua;
     int i=1;
     //nome do arquivo .geo
     char *nomegeo=NULL;
@@ -95,11 +102,7 @@ int main(int argc, char *argv[]){
 
     char nomesvg[]=".svg";
 
-    listFig=createLista();
-    listQua=createLista();
-    listSem=createLista();
-    listHid=createLista();
-    listRad=createLista();
+    double cx1,cy1,h1,w1;
 
 
     //varre os parametros digitados no terminal
@@ -167,11 +170,12 @@ int main(int argc, char *argv[]){
         saidasvg=(char*)malloc((strlen(nomegeo)+(strlen(nomesvg)+strlen(dirbase)+1)*sizeof(char)));
         sprintf(pathgeo,"%s/%s",dirbase,nomegeo);
     }else if(dirbase == NULL){
-        sprintf(pathgeo,"%s",nomegeo);
+        
         pathgeo = (char *)malloc((strlen(nomegeo)+1)*sizeof(char));
-        pathqry = (char *)malloc((strlen(nomeqry)+strlen(dirbase)+2)*sizeof(char));
+        pathqry = (char *)malloc((strlen(nomeqry)+1)*sizeof(char));
         saidasvg=(char*)malloc((strlen(nomegeo)+strlen(nomesvg)+1)*sizeof(char));
-        sprintf(pathqry,"%s/%s",dirbase,nomeqry);
+        sprintf(pathgeo,"%s",nomegeo);
+        sprintf(pathqry,"%s",nomeqry);
     }else{
         //aloca memoria do tamanho de nomegeo+dirbase
         pathgeo = (char *)malloc((strlen(nomegeo)+strlen(dirbase)+2)*sizeof(char));
@@ -182,19 +186,37 @@ int main(int argc, char *argv[]){
         sprintf(pathqry,"%s/%s",dirbase,nomeqry);
     }
     sprintf(saidasvg,"%s%s",nomegeo,nomesvg);
-    leituraGeo(saidasvg,pathgeo,listFig,listQua,listSem,listHid,listRad);
+    printf("\ngeo=%s  %s",nomegeo,sufixogeo);
+    printf("\nqry=%s  %s",nomeqry,sufixoqry);
+
+    printf("\npaths=%s  %s",pathqry,pathgeo);
+    printf("\nsaida=%s",saidasvg);
     
-    leituraQry(pathqry ,dirsaida,sufixogeo,sufixoqry,listFig,listQua,listRad,listHid,listSem);
+    leituraGeo(saidasvg,pathgeo,listFig,listQua,listSem,listHid,listRad);
+    //imprimir(listFig);
+    Quadra quadra=(Quadra)qua;
+    //qua=criaQuadra();
+    qua=getQuadra(listQua,0);
+    printf("\n%lf %lf\n",getQuadraX(qua),getQuadraX(qua));
+    printf("\ns*");
+                cx1=getQuadraX(qua);
+                cy1=getQuadraY(qua);
+                w1=getQuadraW(qua);
+                h1=getQuadraH(qua);
+                 //printf("%lf %lf %lf %lf\n", cx1,cy1,w1,h1);
+    if(nomeqry!=NULL){
+        leituraQry(pathqry,dirsaida,sufixogeo,sufixoqry,listFig,listQua,listRad,listHid,listSem);
+    }
+    
    // criaSvg(listFig,listQua,listRad,listHid,listSem,saidasvg);
     
-    printf("\n%s  %s",nomegeo,sufixogeo);
-    printf("\n%s  %s",nomeqry,sufixoqry);
     
-    freeList(listFig);
-    freeList(listHid);
-    freeList(listQua);
-    freeList(listRad);
-    freeList(listSem);
+    
+    //freeList(listFig);
+    //freeList(listHid);
+    //freeList(listQua);
+    //freeList(listRad);
+    //freeList(listSem);
     free(nomegeo);
     free(nomeqry);
     free(dirbase);
