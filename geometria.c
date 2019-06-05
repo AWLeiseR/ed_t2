@@ -52,17 +52,22 @@ int collision(double recX,double recY,double recW,double recH,double cX,double c
         return 0;
 }
 
-/*int sobreposicao(ListaFiguras *list,int j,int k, FILE *arq3){
-    Retangulo *re1;
-    Retangulo *re2;
-    Circulo *cir1;
-    Circulo *cir2;
-    double cx1, cy1,cx2,cy2,r1,r2,w1,h1,w2,h2;
-    char tipo1, tipo2;
-    int res,dis,raios;
-    double w,h;
-    char cor[]="red";
-    t
+int sobreposicao(double x1, double y1, double r1, double x2, double y2,double r2,FILE *arq3){
+    int res;
+    double x,y,h,w;
+    //calcula a distancia entre os rcentros
+    dis=distancia(x1,y1,x2,y2);
+    //soma so raios
+    raios=r1+r2;
+    //verifica se a distancia é menos ou igual ao soma dos raios
+    if(dis<=raios)
+        res=1;
+    else
+        res=0;
 
+    w=max(x1,x2)-min(x1,x2)+r1+r2;
+                    
+    h=max(y1,y2)-min(y1,y2)+r1+r2;
+    imprimiRetangulodash(min(x1,x2)-max(r1,r2),min(y1,y2)-max(r1,r2),w,h,cor,arq3,res);
     return res;
-}*/
+}

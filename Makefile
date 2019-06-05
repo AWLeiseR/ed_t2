@@ -1,40 +1,41 @@
+#Makefile do siguel
 
-CC = gcc
-COMPILER_FLAGS = -std=c99
-LINKER_FLAGS = -lm
-OBJ_NAME = siguel
+# Nome do arquivo final
+PROJ_NAME=siguel
+ 
+# arquivos .c
+C_SOURCE=$(wildcard *.c)
+ 
+# arquivos .h
+H_SOURCE=$(wildcard *.h)
+ 
+# arquivos .o
+OBJ=$(C_SOURCE:.c=.o)
+ 
+# compilador
+CC=gcc
+ 
+# Flags
+CC_FLAGS=-c         \
+         -W         \
+         -Wall      \
+	 -std=c99	\
+	 -fstack-protector-all
+ 
+#
+# Compila e linka os arquivos
+#
+all: $(PROJ_NAME)
+ 
+$(PROJ_NAME): $(OBJ)
+	$(CC) -o $@ $^ -lm
+ 
+%.o: %.c %.h
 
-
-siguel: main.o 
-	$(CC) main.o figuras.o lista.o quadra.o radioBase.o hidrante.o geofile.o semaforo.o svgFile.o qryFile.o geometria.o $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
-
-main.o: main.c lista.o lista.h geofile.o geofile.h svgFile.o svgFile.h qryFile.o qryFile.h
-	$(CC) -c main.c
-
-qryFile.o: qryFile.c qryFile.h svgFile.o geometria.o
-	$(CC) -c qryFile.c
-
-geometria.o: geometria.c geometria.h lista.h
-	$(CC) -c geometria.c
-
-lista.o: lista.c lista.h figuras.o figuras.h quadra.o quadra.h radioBase.h hidrante.h semaforo.h
-	$(CC) -c lista.c
-
-figuras.o: figuras.c figuras.h geometria.o geometria.h
-	$(CC) -c figuras.c
-
-quadra.o: quadra.c quadra.h 
-	$(CC) -c quadra.c
-
-radioBase.o: radioBase.c radioBase.h 
-	$(CC) -c radioBase.c
-
-hidrante.o: hidrante.c hidrante.h 
-	$(CC) -c hidrante.c
-
-semaforo.o: semaforo.c semaforo.h 
-	$(CC) -c semaforo.c
-
-svgFile.o: svgFile.c svgFile.h 
-	$(CC) -c svgFile.c
-
+	$(CC) -o $@ $< $(CC_FLAGS)
+ 
+main.o: main.c $(H_SOURCE)
+	$(CC) -o $@ $< $(CC_FLAGS)
+ 
+clean:
+	rm -rf *.o $(PROJ_NAME) *~
