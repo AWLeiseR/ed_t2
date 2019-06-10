@@ -1,8 +1,5 @@
 #include<math.h>
 #include<stdio.h>
-
-
-
 /*calcula a distancia euclidiana entre os pontoos (x1,y1) e (x2,y2)*/
 double distancia (double x1, double y1, double x2, double y2){
     double dx = x2 - x1;
@@ -25,7 +22,6 @@ double min(double n1,double n2){
     else
         return n2;
 }
-
 
 int pontoInternoCirculo(double px, double py, double cx, double cy, double r){
     double d = distancia (px,py,cx,cy);
@@ -50,24 +46,4 @@ int collision(double recX,double recY,double recW,double recH,double cX,double c
         return 1;
     else
         return 0;
-}
-
-int sobreposicao(double x1, double y1, double r1, double x2, double y2,double r2,FILE *arq3){
-    int res;
-    double x,y,h,w;
-    //calcula a distancia entre os rcentros
-    dis=distancia(x1,y1,x2,y2);
-    //soma so raios
-    raios=r1+r2;
-    //verifica se a distancia é menos ou igual ao soma dos raios
-    if(dis<=raios)
-        res=1;
-    else
-        res=0;
-
-    w=max(x1,x2)-min(x1,x2)+r1+r2;
-                    
-    h=max(y1,y2)-min(y1,y2)+r1+r2;
-    imprimiRetangulodash(min(x1,x2)-max(r1,r2),min(y1,y2)-max(r1,r2),w,h,cor,arq3,res);
-    return res;
 }

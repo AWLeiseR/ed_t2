@@ -143,21 +143,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 cy2=getCirculoY(cir2);
                 r1=getCirculoR(cir1);
                 r2=getCirculoR(cir2);
-                //calcula a distancia entre os rcentros
-                dis=distancia(cx1,cy1,cx2,cy2);
-                //soma so raios
-                raios=r1+r2;
-                //verifica se a distancia é menos ou igual ao soma dos raios
-                if(dis<=raios)
-                    res=1;
-                else
-                    res=0;
-
-                w=max(cx1,cx2)-min(cx1,cx2)+r1+r2;
-                    
-                h=max(cy1,cy2)-min(cy1,cy2)+r1+r2;
-                imprimiRetangulodash(min(cx1,cx2)-max(r1,r2),min(cy1,cy2)-max(r1,r2),w,h,cor,arq3,res);
-                    
+                sobre=sobreposicaoCirculoCirculo(cx1,cy1,cr1,cx2,cy2,cr2,cor,arq3);                    
             //verifica se as formas sao um retangulo e um circulo
             }else if(tipo1=='r'&& tipo2=='c'){
                 cir1=getCirculo(listFig,j);
@@ -170,11 +156,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 cy2=getRetanguloY(re1);
                 w1=getRetanguloW(re1);
                 h1=getRetanguloH(re1);
-
-                res=collision(cx1,cy1,w1,h1,cx2,cy2,r2);
-                w=max(cx1+w1,cx2+r2)-min(cx1,cx2-r2);    
-            h=max(cy1+h1,cy2+r2)-min(cy1,cy2-r2);
-                imprimiRetangulodash(min(cx1,cx2-r2),min(cy1,cy2-r2),w,h,cor,arq3,res);
+                sobre=sobreposicaoCirculoRetangulo(cx1,cy1,r1,cx2, cy2,h1,w1,cor,arq3);
             //verifica se as formas sao um circulo e um retangulo    
             }else if(tipo1=='c'&& tipo2=='r'){
 
@@ -189,7 +171,7 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 w2=getRetanguloW(re1);
                 h2=getRetanguloH(re1);
 
-
+                sobre=sobreposicaoCirculoRetangulo(cx1,cy1,r1,cx2,cy2,h2,w2,cor,arq3);
                 res=collision(cx2,cy2,w2,h2,cx1,cy1,r1);
                 w=max(cx2+w2,cx1+r1)-min(cx2,cx1-r1);    
                 h=max(cy2+h2,cy1+r1)-min(cy2,cy1-r1);
@@ -201,17 +183,14 @@ void leituraQry(char pathqry[], char pathsaida[],char sufixogeo[],char sufixoqry
                 cy1=getRetanguloY(re1);
                 w1=getRetanguloW(re1);
                 h1=getRetanguloH(re1);
+
                 re2=getRetangulo(listFig,k);
                 cx2=getRetanguloX(re1);
                 cy2=getRetanguloY(re1);
                 w2=getRetanguloW(re1);
                 h2=getRetanguloH(re1);
-                if(cx1<cx2+w2 && cx1+w1>cx2 && cy1<cy2+h2 && cy1+h1>cy2)
-                res=1;
-                w=max(cx1+w1,cx2+w2)-min(cx1,cx2);   
-            h=max(cy1+h1,cy2+h2)-min(cy1,cy2);
-            imprimiRetangulodash(min(cx1,cx2),min(cy1,cy2),w,h,cor,arq3,res);
-                
+
+                sobre=sobreposicaoRetanguloRetangulo(cx1,cy1,h1,w1,cx2,cy2,h2,w2,cor,arq3);                
             }
             //escreve no arquivo txt o enuciado
             fprintf(arq2,"%s %d %d\n%s\n",letra,j,k, sobre? "SIM":"NAO");
