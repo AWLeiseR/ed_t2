@@ -38,7 +38,7 @@ void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFigura
     double sw;    
     char *line_buf=NULL;
     size_t line_buf_size = 0;
-    ssize_t line_size;
+    size_t line_size;
    
     //abre o arquivo svg
     arq=fopen(address,"r");
@@ -50,7 +50,7 @@ void leituraGeo(char saidasvg[],char address[],ListaFiguras *listFig,ListaFigura
     }
    svg=fopen(saidasvg,"w");
    if(svg==NULL){
-       printf("\nNAO ENCONTRADO ARQUIVO %s\n",svg);;
+       printf("\nNAO ENCONTRADO ARQUIVO %s\n",saidasvg);;
         perror("");
         exit(1);
    }

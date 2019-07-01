@@ -38,7 +38,7 @@ void imprimiLinha(double x1,double y1,double x2, double y2, FILE *arq){
    fprintf(arq," <line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"black\" stroke-width=\"2\" />",x1,y1,x2,y2);
 }
 
-void imprimiRetangulodash(double x, double y, double w, double h, char stroke[], FILE *arq, int res){
+void imprimiRetanguloDash(double x, double y, double w, double h, char stroke[], FILE *arq, int res){
     if(res)
         fprintf(arq,"<rect x=\"%lf\" y=\"%lf\" width=\"%lf\" height=\"%lf\" fill=\"none\" stroke=\"%s\" stroke-dasharray=\"5\" stroke-width:\"2\" />",x,y,w,h,stroke);
     else

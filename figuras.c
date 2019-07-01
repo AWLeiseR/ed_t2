@@ -75,6 +75,7 @@ void deslocaRetangulo(double dx, double dy){
 int sobreposicaoCirculoCirculo(double x1, double y1, double r1, double x2, double y2,double r2,char cor[],FILE *arq3){
     int res;
     double x,y,h,w;
+    double dis,raios;
     //calcula a distancia entre os rcentros
     dis=distancia(x1,y1,x2,y2);
     //soma so raios
@@ -88,28 +89,29 @@ int sobreposicaoCirculoCirculo(double x1, double y1, double r1, double x2, doubl
     w=max(x1,x2)-min(x1,x2)+r1+r2;
                     
     h=max(y1,y2)-min(y1,y2)+r1+r2;
-    imprimiRetangulodash(min(x1,x2)-max(r1,r2),min(y1,y2)-max(r1,r2),w,h,cor,arq3,res);
+    imprimiRetanguloDash(min(x1,x2)-max(r1,r2),min(y1,y2)-max(r1,r2),w,h,cor,arq3,res);
     return res;
 }
 
 int sobreposicaoCirculoRetangulo(double x1, double y1, double r1, double x2, double y2,double h2,double w2,char cor[],FILE *arq3){
-    int res;
+ int res;
     double w,h;
-    if(cx1<cx2+w2 && cx1+w1>cx2 && cy1<cy2+h2 && cy1+h1>cy2)
-        res=1;
-    w=max(cx1+w1,cx2+w2)-min(cx1,cx2);   
-    h=max(cy1+h1,cy2+h2)-min(cy1,cy2);
-    imprimiRetangulodash(min(cx1,cx2),min(cy1,cy2),w,h,cor,arq3,res);
+    res=collision(x2,y2,w2,h2,x1,y1,r1);
+    w=max(x2+w2,x1+r1)-min(x2,x1-r1);    
+    h=max(y2+h2,y1+r1)-min(y2,y1-r1);
+    imprimiRetangulodash(min(x2,x1-r1),min(y2,y1-r1),w,h,cor,arq3,res);
     return res;
+    
 }
 
 int sobreposicaoRetanguloRetangulo(double x1, double y1, double h1, double w1, double x2, double y2,double h2,double w2,char cor[],FILE *arq3){
     int res;
     double w,h;
-    res=collision(cx1,cy1,w1,h1,cx2,cy2,r2);
-    w=max(cx1+w1,cx2+r2)-min(cx1,cx2-r2);    
-    h=max(cy1+h1,cy2+r2)-min(cy1,cy2-r2);
-    imprimiRetangulodash(min(cx1,cx2-r2),min(cy1,cy2-r2),w,h,cor,arq3,res);
+    if(x1<x2+w2 && x1+w1>x2 && y1<y2+h2 && y1+h1>y2)
+        res=1;
+    w=max(x1+w1,x2+w2)-min(x1,x2);   
+    h=max(y1+h1,y2+h2)-min(y1,y2);
+    imprimiRetangulodash(min(x1,x2),min(y1,y2),w,h,cor,arq3,res);
     return res;
 }
 
